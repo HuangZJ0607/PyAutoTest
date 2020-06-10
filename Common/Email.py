@@ -2,12 +2,13 @@
 # @Author   :hzj
 # @File     :Email.py
 # @Time     :2020/6/9 19:31
-import smtplib, os, config
+import smtplib, os
 from email.header import Header
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from Common.Log import Log
 from Common import FilePath
+from Common.config import Get_Config
 
 
 class Email:
@@ -23,20 +24,20 @@ class Email:
     def setemail(self):
 
         # 发送人的邮箱地址
-        self.sender = config.email_sender
+        self.sender = Get_Config().get_Email_Sender()
 
         # 接受人的邮箱地址
         # receiver = config.email_receiver
-        self.receiver = ['*****@qq.com']
+        self.receiver = ['1009183589@qq.com']
 
         # 设置邮箱服务器
-        self.host = config.email_host
+        self.host = Get_Config().get_Email_Host()
 
         # 设置邮箱端口
-        self.port = config.email_port
+        self.port = Get_Config().get_Email_Port()
 
         # 设置psw授权码
-        self.password = config.email_psw
+        self.password = Get_Config().get_Email_Psw()
         self.message = MIMEMultipart()
 
         # 设置邮件的发送者

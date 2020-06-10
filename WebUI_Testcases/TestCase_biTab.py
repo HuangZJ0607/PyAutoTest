@@ -7,19 +7,19 @@ from selenium.webdriver.common.by import By
 from time import sleep
 import unittest
 from ddt import ddt, file_data
-import config
+from Common.config import Get_Config
 
 
 @ddt
 class biTab(unittest.TestCase):
     def setUp(self) -> None:
         # 访问指定URL
-        self.d = Driver(config.bili_url, 'chrome')
+        self.d = Driver(Get_Config().get_Url(), 'chrome')
 
     def tearDown(self) -> None:
         self.d.quite_browser()
 
-    @file_data(config.df_path + 'tab_content.yaml')
+    @file_data(Get_Config().get_DataFilePath() + 'tab_content.yaml')
     def test_tab(self, **c):
         xpath = c.get('xpath')
         title = c.get('title')

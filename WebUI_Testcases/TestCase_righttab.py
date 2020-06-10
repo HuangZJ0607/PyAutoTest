@@ -6,19 +6,19 @@ from Common.Driver import Driver
 from selenium.webdriver.common.by import By
 from time import sleep
 import unittest
-import config
 from ddt import ddt, file_data
+from Common.config import Get_Config
 
 
 @ddt
 class righttab(unittest.TestCase):
     def setUp(self) -> None:
-        self.d = Driver(config.bili_url, 'chrome')
+        self.d = Driver(Get_Config().get_Url(), 'chrome')
 
     def tearDown(self) -> None:
         self.d.quite_browser()
 
-    @file_data(config.df_path + 'righttab_content.yaml')
+    @file_data(Get_Config().get_DataFilePath() + 'righttab_content.yaml')
     def test_righttab(self, **c):
         xpath1 = c.get('xpath1')
         xpath2 = c.get('xpath2')
