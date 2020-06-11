@@ -6,6 +6,7 @@
 import unittest
 from Common.Report import Test_Report
 from Common.Email import Email
+from Common import FilePath
 
 class CreateSuite:
     def __init__(self):

@@ -26,18 +26,20 @@ class Driver(object):
         :param browser:固定参数，表示浏览器的类型
         :return:浏览器的driver驱动
         '''
-        browser = browser.upper()
-        if browser == 'CHROME':
-            self.driver = webdriver.Chrome()
-            self.log.log_info('调用Chrome浏览器')
-        elif browser == 'FIREFOX':
-            self.driver = webdriver.Firefox()
-            self.log.log_info('调用Firefox浏览器')
-        elif browser == 'IE':
-            self.driver = webdriver.Ie()
-            self.log.log_info('调用ie浏览器')
-        else:
-            self.log.log_info('浏览器启动失败')
+        try:
+            browser = browser.upper()
+            if browser == 'CHROME':
+                self.driver = webdriver.Chrome()
+                self.log.log_info('调用Chrome浏览器')
+            elif browser == 'FIREFOX':
+                self.driver = webdriver.Firefox()
+                self.log.log_info('调用Firefox浏览器')
+            elif browser == 'IE':
+                self.driver = webdriver.Ie()
+                self.log.log_info('调用ie浏览器')
+        except Exception as error:
+            self.log.log_error(f'浏览器启动失败')
+            raise error
 
     # 访问指定URL
     def visit_url(self, url):
@@ -63,8 +65,8 @@ class Driver(object):
             self.log.log_info(f'定位到元素：{locator}')
             return el
         except Exception as error:
-            self.log.log_error(f'没有找到对应元素,错误提示：{error}')
-            # self.quite_browser()
+            self.log.log_error(f'元素定位失败,{error}')
+            raise error
 
     # 输入操作
     def input_text(self, locator, text):
@@ -73,8 +75,7 @@ class Driver(object):
             el.send_keys(text)
             self.log.log_info(f'输入内容：{text}')
         except Exception as error:
-            self.log.log_error(f'输入操作失败，错误提示：{error}')
-            # self.quite_browser()
+            self.log.log_error(f'内容输入操作失败,{error}')
 
     # 点击操作
     def click_element(self, locator):
@@ -83,8 +84,7 @@ class Driver(object):
             el.click()
             self.log.log_info('点击元素')
         except Exception as error:
-            self.log.log_error(f'元素点击失败,错误提示：{error}')
-            # self.quite_browser()
+            self.log.log_error(f'元素点击失败,{error}')
 
     # 获取当前元素的内容
     def get_text(self, locator):
@@ -94,8 +94,7 @@ class Driver(object):
             self.log.log_info(f'当前元素的内容为：{text}')
             return text
         except Exception as error:
-            self.log.log_error(f'元素内容获取失败,错误提示：{error}')
-            # self.quite_browser()
+            self.log.log_error(f'元素内容获取失败,{error}')
 
     # 切换句柄，关闭旧的页面
     def switch_handle(self):
@@ -105,8 +104,7 @@ class Driver(object):
             self.driver.switch_to.window(handles[1])
             self.log.log_info(f'关闭页面：{handles[0]}  切换到页面：{handles[1]}')
         except Exception as error:
-            self.log.log_error(f'页面切换失败,错误提示：{error}')
-            # self.quite_browser()
+            self.log.log_error(f'句柄切换失败,{error}')
 
     # 切换句柄，保留原有的页面
     def switch_handle_save(self):
@@ -115,8 +113,7 @@ class Driver(object):
             self.driver.switch_to.window(handles[1])
             self.log.log_info(f'直接切换到页面：{handles[1]}')
         except Exception as error:
-            self.log.log_error(f'页面切换失败,错误提示：{error}')
-            # self.quite_browser()
+            self.log.log_error(f'句柄切换失败,{error}')
 
     # 获取当前句柄的title
     def browser_title(self):
@@ -124,8 +121,7 @@ class Driver(object):
             self.log.log_info(f'当前页面的title：{self.driver.title}')
             return self.driver.title
         except Exception as error:
-            self.log.log_error(f'页面标题获取失败,错误提示：{error}')
-            # self.quite_browser()
+            self.log.log_error(f'页面标题获取失败,{error}')
 
     # 关闭标签页
     def close_tag(self):
@@ -134,11 +130,8 @@ class Driver(object):
             self.log.log_info('关闭标签页')
         except Exception as error:
             self.log.log_error(f'标签页关闭失败,错误提示：{error}')
-            # self.quite_browser()
 
     # 释放浏览器资源
     def quite_browser(self):
         self.driver.quit()
         self.log.log_info('关闭浏览器，释放资源')
-        self.log.log_info(
-            '---------------------------------------------------------------------------------------------')

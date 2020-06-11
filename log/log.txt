@@ -1,1 +1,2 @@
-[2020/06/11 13:45:47] [INFO] 邮件发送成功，附件名称为：H:\PyAutoTest/Test_Report/2020_06_10_22_33_31_report.html
+[2020/06/12 00:06:03] [INFO] [请求地址：http://39.98.138.157:5000/api/demo][请求方法：get] 接口参数{'username': 'admin', 'password': '123456'} 请求头{'Content-Type': 'application/json'}
+[2020/06/12 00:06:04] [INFO] 请求成功，响应值为{'data': [{'from': 'cemaxueyuan', 'name': 'hello,yideng'}, {'from': 'cemaxueyuan', 'name': 'hello,xuzhu'}, {'from': 'cemaxueyuan', 'name': 'hello,susu'}], 'httpstatus': 200}
