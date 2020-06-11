@@ -4,7 +4,7 @@ DataFile文件夹 ——> 存放数据文件
 WebUI_TestCase文件夹 ——> 存放WebUI的测试用例  
 config.py ——> 存放部分配置字段  
 TestSuites.py ——> 用于执行测试用例  
-
+***
 >2020/06/10 22:46
 >>修改：部分基础公共类  
 >>新增：config.ini  
