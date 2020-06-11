@@ -34,9 +34,12 @@ class Get_Config:
 
     def get_Email_Receiver(self):
         '''
-        :return: 返回邮件接收者的地址
+        :return: 返回邮件接收者的地址(列表类型)
         '''
-        return self.cp.get('email', 'email_receiver')
+        receiver = self.cp.get('email', 'email_receiver')
+        receiver_list = receiver.split(",")
+        return receiver_list
+
 
     def get_Email_Host(self):
         '''
@@ -58,3 +61,6 @@ class Get_Config:
 
     def get_DataFilePath(self):
         return self.cp.get("datafile_path", "file_path")
+if __name__ == '__main__':
+    print(Get_Config().get_Email_Receiver_List())
+    print(Get_Config().get_Email_Receiver_String())

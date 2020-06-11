@@ -1,18 +1,1 @@
-[2020/06/10 22:33:36] [INFO] 调用Chrome浏览器
-[2020/06/10 22:33:42] [INFO] 访问url：http://www.bilibili.com
-[2020/06/10 22:33:42] [INFO] 定位到元素：('xpath', '//*[@id="primaryChannelMenu"]/span[1]/div[2]/a/span')
-[2020/06/10 22:33:43] [INFO] 点击元素
-[2020/06/10 22:33:44] [INFO] 当前页面的title：动画-哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-[2020/06/10 22:33:46] [INFO] 关闭浏览器，释放资源
-[2020/06/10 22:33:46] [INFO] ---------------------------------------------------------------------------------------------
-[2020/06/10 22:33:51] [INFO] 调用Chrome浏览器
-[2020/06/10 22:33:57] [INFO] 访问url：http://www.bilibili.com
-[2020/06/10 22:33:57] [INFO] 定位到元素：('xpath', '//*[@id="elevator"]/div[2]/div[1]/div[1]')
-[2020/06/10 22:33:57] [ERROR] 元素点击失败,错误提示：Message: element click intercepted: Element <div class="item sortable">...</div> is not clickable at point (1871, 282). Other element would receive the click: <div id="internationalHeader" class="international-header report-wrap-module">...</div>
-  (Session info: chrome=78.0.3904.70)
-
-[2020/06/10 22:33:59] [INFO] 定位到元素：('xpath', '//*[@id="bili_report_live"]/div[1]/header/div[1]/a')
-[2020/06/10 22:33:59] [INFO] 当前元素的内容为：正在直播
-[2020/06/10 22:34:01] [INFO] 关闭浏览器，释放资源
-[2020/06/10 22:34:01] [INFO] ---------------------------------------------------------------------------------------------
-[2020/06/10 22:34:02] [INFO] 邮件发送成功，附件名称为：H:\PyAutoTest/Test_Report/2020_06_10_22_33_31_report.html
+[2020/06/11 13:45:47] [INFO] 邮件发送成功，附件名称为：H:\PyAutoTest/Test_Report/2020_06_10_22_33_31_report.html

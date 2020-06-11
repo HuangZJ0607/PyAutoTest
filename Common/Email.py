@@ -9,7 +9,7 @@ from email.mime.text import MIMEText
 from Common.Log import Log
 from Common import FilePath
 from Common.config import Get_Config
-
+import time
 
 class Email:
     '''
@@ -28,30 +28,29 @@ class Email:
 
         # 接受人的邮箱地址
         # receiver = config.email_receiver
-        self.receiver = ['1009183589@qq.com']
+        self.receiver_list = Get_Config().get_Email_Receiver()
 
         # 设置邮箱服务器
         self.host = Get_Config().get_Email_Host()
-
         # 设置邮箱端口
         self.port = Get_Config().get_Email_Port()
-
         # 设置psw授权码
         self.password = Get_Config().get_Email_Psw()
+        # 实例化MIMEMultipart对象
         self.message = MIMEMultipart()
-
         # 设置邮件的发送者
-        self.message['From'] = Header(self.sender, 'utf-8')
-
+        self.message['From'] = Header('这里是测试报告发送者', 'utf-8')
         # 设置邮件的接收者
         # message['To'] = Header(receiver, 'utf-8')
-        self.message['To'] = Header('*****@qq.com', 'utf-8')
-
+        self.message['To'] = Header('这里是测试报告接收者', 'utf-8')
         # 设置邮件的标题
         self.message['Subject'] = Header('自动化测试报告', 'utf-8')
-
-        self.message.attach(MIMEText('邮件发送', _subtype='html', _charset='utf-8'))
-
+        # 设置邮件主体文本内容
+        now = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime())
+        email_text = now + ' 自动化测试报告，详见附件'
+        # 设置邮件格式
+        self.message.attach(MIMEText(email_text, _subtype='plain', _charset='utf-8'))
+        # 邮件添加附件
         att = MIMEText(open(self.new_report(), 'rb').read(), 'base64', 'utf-8')
         # 添加附件
         att['Content-Type'] = 'applicationt/octet-stram'
@@ -64,9 +63,8 @@ class Email:
             # 登录发送人的邮箱，user是账号；password是开启邮箱服务后的授权码，非账号的密码
             smtpobj.login(self.sender, self.password)
             # 发送邮件
-            smtpobj.sendmail(self.sender, self.receiver, self.message.as_string())
+            smtpobj.sendmail(self.sender, self.receiver_list, self.message.as_string())
             self.log.log_info(f'邮件发送成功，附件名称为：{self.new_report()}')
-            print(self.new_report())
         except Exception as error:
             self.log.log_error(f'邮件发送失败，{error}')
 
