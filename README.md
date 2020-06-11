@@ -5,4 +5,5 @@ WebUI_TestCase文件夹 ——> 存放WebUI的测试用例
 config.py ——> 存放部分配置字段  
 TestSuites.py ——> 用于执行测试用例  
 
-2020/06/10 22:46 本次代码提交，新增了config.ini并修改了部分基础公共类，删除了config.py文件  
+2020/06/10 22:46 新增了config.ini并修改了部分基础公共类，删除了config.py文件  
+2020/06/12 00:15 部分公共类新增raise用于抛出异常，新增HTTPClient.py文件用于二次封装request请求，新增API测试用例的demo  
