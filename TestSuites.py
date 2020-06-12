@@ -4,14 +4,15 @@
 # @Time     :2020/5/28 13:56
 
 import unittest
-from Common.Report import Test_Report
+from Common.Report import Report
 from Common.Email import Email
 from Common import FilePath
 
+
 class CreateSuite:
     def __init__(self):
-        self.test_dir = './WebUI_Testcases/'
-        self.t = Test_Report()
+        self.test_dir = FilePath.fatherpath() + '/Testcases/'
+        self.t = Report()
 
     def testsuite_all(self):
         self.suite = unittest.defaultTestLoader.discover(self.test_dir, pattern='TestCase*.py')

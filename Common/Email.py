@@ -11,15 +11,23 @@ from Common import FilePath
 from Common.config import Get_Config
 import time
 
+# 实例化日志打印模块
+log = Log()
+switch = Get_Config().get_Switch('email_switch')
+
+
 class Email:
-    '''
+    '''i
         把邮件发送的模块封装起来
     '''
-    # 实例化日志打印模块
-    log = Log()
 
     def __init__(self):
-        self.setemail()
+        if switch == '0':
+            log.log_info('邮件发送准备中~')
+            self.setemail()
+        elif switch == '1':
+            log.log_info('根据配置文件，邮件不发送！')
+            pass
 
     def setemail(self):
 
@@ -29,7 +37,6 @@ class Email:
         # 接受人的邮箱地址
         # receiver = config.email_receiver
         self.receiver_list = Get_Config().get_Email_Receiver()
-
         # 设置邮箱服务器
         self.host = Get_Config().get_Email_Host()
         # 设置邮箱端口
@@ -64,9 +71,9 @@ class Email:
             smtpobj.login(self.sender, self.password)
             # 发送邮件
             smtpobj.sendmail(self.sender, self.receiver_list, self.message.as_string())
-            self.log.log_info(f'邮件发送成功，附件名称为：{self.new_report()}')
+            log.log_info(f'邮件发送成功，附件名称为：{self.new_report()}')
         except Exception as error:
-            self.log.log_error(f'邮件发送失败，{error}')
+            log.log_error(f'邮件发送失败，{error}')
 
     def new_report(self):
         # 列出目录下所有文件和文件夹保存到lists里面

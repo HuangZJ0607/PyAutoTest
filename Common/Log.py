@@ -6,7 +6,7 @@ import logging, os
 from Common import FilePath
 from Common.config import Get_Config
 
-switch = Get_Config().get_Switch_Logging()
+switch = Get_Config().get_Switch('logging_switch')
 
 
 class Log:
@@ -53,7 +53,6 @@ class Log:
 
     # 以下皆为重写方法
     def log_info(self, message=None):
-        # self.__init__()
         self.logger.info(message)
 
     def log_debug(self, message=None):
@@ -67,3 +66,6 @@ class Log:
 
     def log_critical(self, message=None):
         self.logger.critical(message)
+if __name__ == '__main__':
+    Log().log_info('111')
+    Log().log_error('222')

@@ -8,7 +8,7 @@ import time
 from Common import FilePath
 
 
-class Test_Report:
+class Report:
     '''
         HTMLTestRunner测试报告二次封装
     '''

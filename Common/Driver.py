@@ -27,7 +27,9 @@ class Driver(object):
         :return:浏览器的driver驱动
         '''
         try:
+            # 将参数browser转成大写
             browser = browser.upper()
+            # 判断参数是哪种浏览器
             if browser == 'CHROME':
                 self.driver = webdriver.Chrome()
                 self.log.log_info('调用Chrome浏览器')
@@ -48,14 +50,18 @@ class Driver(object):
         :param url:固定参数，表示要访问的URL地址
         :return:访问URL
         '''
-        self.driver.get(url)
-        self.driver.maximize_window()
-        self.log.log_info(f'访问url：{url}')
+        try:
+            self.driver.get(url)
+            self.driver.maximize_window()
+            self.log.log_info(f'访问url：{url}')
+        except Exception as error:
+            self.log.log_error(f'地址访问错误：{error}')
+            raise error
 
     # 定位元素
     def locator(self, locator):
         '''
-        定位页面上面的Element，以元组的形式传入
+        定位页面上面的Element，以元组的形式传入，主要用来为其它方法服务
         :param locator: 元组的形式，见例子：（By.XPATH, xpath路径）   (By.ID, "kw")
         :return: 对应WebElement
         '''
@@ -70,24 +76,37 @@ class Driver(object):
 
     # 输入操作
     def input_text(self, locator, text):
+        '''对指定元素输入文本内容
+        :param locator: 元素元组
+        :param text: 文本内容
+        '''
         try:
             el = self.locator(locator)
             el.send_keys(text)
             self.log.log_info(f'输入内容：{text}')
         except Exception as error:
             self.log.log_error(f'内容输入操作失败,{error}')
+            raise error
 
     # 点击操作
     def click_element(self, locator):
+        '''对指定元素进行点击操作
+        :param locator: 元素元组
+        '''
         try:
             el = self.locator(locator)
             el.click()
             self.log.log_info('点击元素')
         except Exception as error:
             self.log.log_error(f'元素点击失败,{error}')
+            raise error
 
     # 获取当前元素的内容
     def get_text(self, locator):
+        '''
+        :param locator: 元素元组
+        :return: 该元素的文本内容
+        '''
         try:
             el = self.locator(locator)
             text = el.text
@@ -97,26 +116,23 @@ class Driver(object):
             self.log.log_error(f'元素内容获取失败,{error}')
 
     # 切换句柄，关闭旧的页面
-    def switch_handle(self):
+    def switch_handle(self, num):
+        '''按照参数切换到对应的句柄
+        :param num: 对应句柄的索引值
+        '''
         try:
             handles = self.driver.window_handles
             self.driver.close()
-            self.driver.switch_to.window(handles[1])
-            self.log.log_info(f'关闭页面：{handles[0]}  切换到页面：{handles[1]}')
-        except Exception as error:
-            self.log.log_error(f'句柄切换失败,{error}')
-
-    # 切换句柄，保留原有的页面
-    def switch_handle_save(self):
-        try:
-            handles = self.driver.window_handles
-            self.driver.switch_to.window(handles[1])
-            self.log.log_info(f'直接切换到页面：{handles[1]}')
+            self.driver.switch_to.window(handles[num])
+            self.log.log_info(f'切换到页面：{handles[num]}')
         except Exception as error:
             self.log.log_error(f'句柄切换失败,{error}')
 
     # 获取当前句柄的title
     def browser_title(self):
+        '''返回当前页面的title
+        :return: 页面title内容
+        '''
         try:
             self.log.log_info(f'当前页面的title：{self.driver.title}')
             return self.driver.title
@@ -125,6 +141,9 @@ class Driver(object):
 
     # 关闭标签页
     def close_tag(self):
+        '''
+        关闭当前标签页
+        '''
         try:
             self.driver.close()
             self.log.log_info('关闭标签页')
@@ -133,5 +152,8 @@ class Driver(object):
 
     # 释放浏览器资源
     def quite_browser(self):
+        '''
+        关闭浏览器，释放资源
+        '''
         self.driver.quit()
         self.log.log_info('关闭浏览器，释放资源')

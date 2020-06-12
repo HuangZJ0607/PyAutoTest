@@ -6,25 +6,24 @@
     这里是配置文件
 '''
 from configparser import ConfigParser
+from Common import FilePath
 
 
 class Get_Config:
 
     def __init__(self):
         self.cp = ConfigParser()
-        self.cp.read("H:\PyAutoTest\config.ini", encoding='utf-8')
+        # self.cp.read("../config.ini", encoding='utf-8')
+        self.cp.read(FilePath.fatherpath() + '/config.ini', encoding='utf-8')
 
-    def get_Url(self):
-        '''
-        :return:返回测试url
-        '''
-        return self.cp.get('url', "url")
+    def get_Url(self, url_name):
+        return self.cp.get('url', url_name)
 
-    def get_Switch_Logging(self):
+    def get_Switch(self,switch_name):
         '''
         :return: 返回日志开关的值
         '''
-        return self.cp.get('switch', 'logging_switch')
+        return self.cp.get('switch', switch_name)
 
     def get_Email_Sender(self):
         '''
@@ -39,7 +38,6 @@ class Get_Config:
         receiver = self.cp.get('email', 'email_receiver')
         receiver_list = receiver.split(",")
         return receiver_list
-
 
     def get_Email_Host(self):
         '''
@@ -59,8 +57,8 @@ class Get_Config:
         '''
         return self.cp.get('email', 'email_psw')
 
-    def get_DataFilePath(self):
-        return self.cp.get("datafile_path", "file_path")
+
 if __name__ == '__main__':
-    print(Get_Config().get_Email_Receiver_List())
-    print(Get_Config().get_Email_Receiver_String())
+    # r =Get_Config().get_Switch_Logging()
+    # print(r)
+    Get_Config()

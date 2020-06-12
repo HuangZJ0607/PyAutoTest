@@ -1,2 +1,11 @@
-[2020/06/12 00:06:03] [INFO] [请求地址：http://39.98.138.157:5000/api/demo][请求方法：get] 接口参数{'username': 'admin', 'password': '123456'} 请求头{'Content-Type': 'application/json'}
-[2020/06/12 00:06:04] [INFO] 请求成功，响应值为{'data': [{'from': 'cemaxueyuan', 'name': 'hello,yideng'}, {'from': 'cemaxueyuan', 'name': 'hello,xuzhu'}, {'from': 'cemaxueyuan', 'name': 'hello,susu'}], 'httpstatus': 200}
+[2020/06/12 13:43:39] [INFO] 调用Chrome浏览器
+[2020/06/12 13:43:44] [INFO] 访问url：http://www.bilibili.com
+[2020/06/12 13:43:44] [INFO] 定位到元素：('xpath', '//*[@id="elevator"]/div[2]/div[1]/div[1]')
+[2020/06/12 13:43:44] [ERROR] 元素点击失败,Message: element click intercepted: Element <div class="item sortable">...</div> is not clickable at point (1871, 282). Other element would receive the click: <div id="internationalHeader" class="international-header report-wrap-module">...</div>
+  (Session info: chrome=78.0.3904.70)
+
+[2020/06/12 13:43:46] [INFO] 关闭浏览器，释放资源
+[2020/06/12 13:43:51] [INFO] 调用Chrome浏览器
+[2020/06/12 13:43:57] [INFO] 访问url：http://www.bilibili.com
+[2020/06/12 13:43:57] [INFO] 123123
+[2020/06/12 13:43:59] [INFO] 关闭浏览器，释放资源
