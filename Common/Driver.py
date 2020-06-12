@@ -70,9 +70,9 @@ class Driver(object):
             el = self.driver.find_element(*locator)
             self.log.log_info(f'定位到元素：{locator}')
             return el
-        except Exception as error:
+        except BaseException as error:
             self.log.log_error(f'元素定位失败,{error}')
-            raise error
+            raise ('元素定位发生错误', error)
 
     # 输入操作
     def input_text(self, locator, text):
@@ -84,9 +84,9 @@ class Driver(object):
             el = self.locator(locator)
             el.send_keys(text)
             self.log.log_info(f'输入内容：{text}')
-        except Exception as error:
+        except BaseException as error:
             self.log.log_error(f'内容输入操作失败,{error}')
-            raise error
+            raise ('输入内容操作发生错误', error)
 
     # 点击操作
     def click_element(self, locator):
@@ -97,9 +97,9 @@ class Driver(object):
             el = self.locator(locator)
             el.click()
             self.log.log_info('点击元素')
-        except Exception as error:
+        except BaseException as error:
             self.log.log_error(f'元素点击失败,{error}')
-            raise error
+            raise ('点击操作发生错误', error)
 
     # 获取当前元素的内容
     def get_text(self, locator):

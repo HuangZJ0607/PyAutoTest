@@ -16,7 +16,7 @@ class HttpClient:
 
     def __init__(self):
         # 一个项目的url、headers的前缀都是一样的
-        self.url = Get_Config().get_Url('api_url')
+        self.url = Get_Config().get_config('url','api_url')
         self.headers = {'Content-Type': 'application/json'}
 
     def get(self, name, data, headers):

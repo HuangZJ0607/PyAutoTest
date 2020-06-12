@@ -6,7 +6,8 @@ import logging, os
 from Common import FilePath
 from Common.config import Get_Config
 
-switch = Get_Config().get_Switch('logging_switch')
+switch = Get_Config().get_config('logging', 'switch')
+level = Get_Config().get_config('logging', 'level').upper()
 
 
 class Log:
@@ -17,7 +18,8 @@ class Log:
     def __init__(self):
         self.logger = logging.getLogger(__name__)
         # logger 配置等级
-        self.logger.setLevel(logging.DEBUG)
+        # self.logger.setLevel(logging.DEBUG)
+        self.logger.setLevel(level)
         # logger 输出格式
         self.formatter = logging.Formatter(
             fmt="[%(asctime)s] [%(levelname)s] %(message)s", datefmt="%Y/%m/%d %H:%M:%S")
@@ -66,6 +68,9 @@ class Log:
 
     def log_critical(self, message=None):
         self.logger.critical(message)
+
+
 if __name__ == '__main__':
     Log().log_info('111')
     Log().log_error('222')
+    Log().log_debug('333')

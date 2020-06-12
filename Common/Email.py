@@ -13,7 +13,7 @@ import time
 
 # 实例化日志打印模块
 log = Log()
-switch = Get_Config().get_Switch('email_switch')
+switch = Get_Config().get_config('email', 'email_switch')
 
 
 class Email:
@@ -30,19 +30,17 @@ class Email:
             pass
 
     def setemail(self):
-
         # 发送人的邮箱地址
-        self.sender = Get_Config().get_Email_Sender()
-
+        self.sender = Get_Config().get_config('email', 'sender')
         # 接受人的邮箱地址
         # receiver = config.email_receiver
-        self.receiver_list = Get_Config().get_Email_Receiver()
+        self.receiver_list = Get_Config().get_config('email', 'receiver')
         # 设置邮箱服务器
-        self.host = Get_Config().get_Email_Host()
+        self.host = Get_Config().get_config('email', 'host')
         # 设置邮箱端口
-        self.port = Get_Config().get_Email_Port()
+        self.port = Get_Config().get_config('email', 'port')
         # 设置psw授权码
-        self.password = Get_Config().get_Email_Psw()
+        self.password = Get_Config().get_config('email', 'psw')
         # 实例化MIMEMultipart对象
         self.message = MIMEMultipart()
         # 设置邮件的发送者
