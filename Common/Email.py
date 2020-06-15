@@ -12,7 +12,7 @@ from Common.config import Get_Config
 import time
 
 # 实例化日志打印模块
-log = Log()
+log = Log().logger
 switch = Get_Config().get_config('email', 'email_switch')
 
 
@@ -23,10 +23,10 @@ class Email:
 
     def __init__(self):
         if switch == '0':
-            log.log_info('邮件发送准备中~')
+            log.info('邮件发送准备中~')
             self.setemail()
         elif switch == '1':
-            log.log_info('根据配置文件，邮件不发送！')
+            log.info('根据配置文件，邮件不发送！')
             pass
 
     def setemail(self):
@@ -69,9 +69,9 @@ class Email:
             smtpobj.login(self.sender, self.password)
             # 发送邮件
             smtpobj.sendmail(self.sender, self.receiver_list, self.message.as_string())
-            log.log_info(f'邮件发送成功，附件名称为：{self.new_report()}')
+            log.info(f'邮件发送成功，附件名称为：{self.new_report()}')
         except Exception as error:
-            log.log_error(f'邮件发送失败，{error}')
+            log.error(f'邮件发送失败，{error}')
 
     def new_report(self):
         # 列出目录下所有文件和文件夹保存到lists里面

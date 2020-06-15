@@ -17,4 +17,7 @@ TestSuites.py  ——> 用于执行测试用例
 >2020/06/12 14:03  
 >>修改：文件读取改成相对路径，测试用例合并到同一文件夹下
 ***
+>2020/06/15 22:18
+>>修改：日志模块封装的实现方法，TestCase_API_demo.py文件新增了test_interface用于批量跑接口测试
+***
 Please wait for the next update!!!

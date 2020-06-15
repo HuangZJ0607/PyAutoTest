@@ -5,108 +5,106 @@
 import requests
 from Common.Log import Log
 from Common.config import Get_Config
+import json
 
-log = Log()
+log = Log().logger
 
 
-class HttpClient:
+class RequestFail(Exception):
+    pass
+
+
+class Request:
     '''
         封装发送http请求的类
     '''
 
     def __init__(self):
-        # 一个项目的url、headers的前缀都是一样的
-        self.url = Get_Config().get_config('url','api_url')
-        self.headers = {'Content-Type': 'application/json'}
+        '''
+            一个项目的url，headers前缀一样的，参数类型也一样
+            init方法每次实例化的时候，自动调用init方法
+        '''
+        self.init_url_headers()
 
-    def get(self, name, data, headers):
+    def init_url_headers(self):
+        '''
+            初始化url和headers
+        '''
+        self.url = Get_Config().get_config('url', 'api_url')
+        self.headers = {
+            'Content-Type': 'application/json',
+        }
+
+    def get(self, data):
         '''封装一个get请求的方法
-
-        :param name: 接口地址的后缀
         :param data: 接口参数
-        :param headers: 请求头
-        :return: 返回一个元组，下标为0的是状态码，下标为1的是响应值内容（字典格式）
+        :return: 返回接口的返回值
         '''
         try:
             # 发起get请求
-            res = requests.get(url=name, params=data, headers=headers)
-            log.log_info(f'请求成功，响应值为{res.json()}')
-            return res.status_code, res.json()
-        except Exception as error:
-            raise ('接口请求发生错误：', error)
+            res = requests.get(url=self.url, params=data, headers=self.headers)
+            return res.json()
+        except BaseException as error:
+            raise RequestFail('接口请求发生错误：', error)
 
-    def post(self, name, data, headers):
+    def post(self, data, files):
         '''封装post请求的方法
-
-        :param name: 接口地址的后缀
         :param data: 接口参数
-        :param headers: 请求头
-        :return: 返回一个元组，下标为0的是状态码，下标为1的是响应值内容（字典格式）
+        :return: 返回接口的返回值
         '''
         try:
             # 发起post请求
-            res = requests.post(url=self.url + name, data=data, headers=headers)
-            log.log_info(f'请求成功，响应值为{res.json()}')
-            return res.status_code, res.json()
-        except Exception as error:
-            raise ('接口请求发生错误：', error)
+            res = requests.post(url=self.url, data=data, headers=self.headers, files=files)
+            return res.json()
+        except BaseException as error:
+            raise RequestFail('接口请求发生错误：', error)
 
-    def delete(self, name, data, headers):
+    def delete(self, data):
         '''封装delete请求的方法
-
-        :param name: 接口地址的后缀
         :param data: 接口参数
-        :param headers: 请求头
-        :return: 返回一个元组，下标为0的是状态码，下标为1的是响应值内容（字典格式）
+        :return: 返回接口的返回值
         '''
         try:
             # 发起delete请求
-            res = requests.delete(url=self.url + name, data=data, headers=headers)
-            log.log_info(f'请求成功，响应值为{res.json()}')
-            return res.status_code, res.json()
-        except Exception as error:
-            raise ('接口请求发生错误：', error)
+            res = requests.delete(url=self.url, data=data, headers=self.headers)
+            return res.json()
+        except BaseException as error:
+            raise RequestFail('接口请求发生错误：', error)
 
-    def sent_request(self, method, name=None, data=None, headers=None):
+    def send_request(self, method, name=None, data=None, headers=None, files=None):
         '''封装发送请求的方法
-
         :param method: 请求的方式，分为get、post、delete等
         :param name: 接口地址的后缀
         :param data: 接口参数
         :param headers: 接口请求头
-        :return: 返回一个元组，下标为0的是状态码，下标为1的是响应值内容（字典格式）
+        :return: 返回接口的返回值
         '''
-        try:
-            # 请求类型转成大写
-            methon = method.upper()
-            # 判断是否传入headers
-            if headers == None:
-                headers = self.headers
-            # 判断是否传入地址后缀名
-            if name == None:
-                name = self.url
-            else:
-                name = self.url + name
-            log.log_info('[请求地址：{0}][请求方法：{1}] 接口参数{2} 请求头{3}'.format(name, method, data, headers))
-            # 判断请求类型
-            if methon == 'GET':
-                res = self.get(name, data, headers)
-                return res
-            elif method == 'POST':
-                res = self.post(name, data, headers)
-                return res
-            elif method == 'DELETE':
-                res = self.delete(name, data, headers)
-                return res
-        except Exception as error:
-            raise ('接口请求发生错误：', error)
+        if headers:
+            # 转成字典类型
+            for key, value in headers.items():
+                self.headers[key] = value
+        if data:
+            # 字典类型转换成json字符串
+            if isinstance(data, dict):
+                data = json.dumps(data)
+        # 后缀不一定相同，但是前缀是一样的，拼接每次的请求的url
+        self.url = self.url + name
+
+        # 请求类型转成大写
+        methon = method.upper()
+        res = ''
+        log.info('>>>---开始请求接口地址：{0}，请求方法：{1}，接口参数：{2}'.format(self.url, method, data))
+        # 判断请求类型
+        if methon == 'GET':
+            res = self.get(data)
+        elif method == 'POST':
+            res = self.post(data, files)
+        elif method == 'DELETE':
+            res = self.delete(data)
+        log.info('接口响应值：{}'.format(res))
+        self.init_url_headers()
+        return res
 
 
 if __name__ == '__main__':
-    res = HttpClient().sent_request(method='get', name='demo')
-    print('这里是res', res)
-    print('res的类型', type(res))
-    print('这里是res的第一个元素', res[0], type(res[0]))
-    print('这里是res的第二个元素', res[1], type(res[1]))
-    print(res[1]['data'][0])
-    print(res[1]['data'][0]['from'])
+    res = Request().send_request(method='get', name='demo')

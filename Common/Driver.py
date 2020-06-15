@@ -11,7 +11,7 @@ class Driver(object):
     '''
         封装了部分webdriver方法
     '''
-    log = Log()
+    log = Log().logger
 
     # 初始化函数
     def __init__(self, url, browser):
@@ -53,7 +53,7 @@ class Driver(object):
         try:
             self.driver.get(url)
             self.driver.maximize_window()
-            self.log.log_info(f'访问url：{url}')
+            self.log.logger.log_info(f'访问url：{url}')
         except Exception as error:
             self.log.log_error(f'地址访问错误：{error}')
             raise error
@@ -68,10 +68,10 @@ class Driver(object):
         # 不需要在其他部分添加*号，因为*表示将变量作为元组进行解析，只需要在解析时标注即可
         try:
             el = self.driver.find_element(*locator)
-            self.log.log_info(f'定位到元素：{locator}')
+            self.log.info(f'定位到元素：{locator}')
             return el
         except BaseException as error:
-            self.log.log_error(f'元素定位失败,{error}')
+            self.log.error(f'元素定位失败,{error}')
             raise ('元素定位发生错误', error)
 
     # 输入操作
@@ -83,9 +83,9 @@ class Driver(object):
         try:
             el = self.locator(locator)
             el.send_keys(text)
-            self.log.log_info(f'输入内容：{text}')
+            self.log.info(f'输入内容：{text}')
         except BaseException as error:
-            self.log.log_error(f'内容输入操作失败,{error}')
+            self.log.error(f'内容输入操作失败,{error}')
             raise ('输入内容操作发生错误', error)
 
     # 点击操作
@@ -96,9 +96,9 @@ class Driver(object):
         try:
             el = self.locator(locator)
             el.click()
-            self.log.log_info('点击元素')
+            self.log.info('点击元素')
         except BaseException as error:
-            self.log.log_error(f'元素点击失败,{error}')
+            self.log.error(f'元素点击失败,{error}')
             raise ('点击操作发生错误', error)
 
     # 获取当前元素的内容
@@ -110,10 +110,10 @@ class Driver(object):
         try:
             el = self.locator(locator)
             text = el.text
-            self.log.log_info(f'当前元素的内容为：{text}')
+            self.log.info(f'当前元素的内容为：{text}')
             return text
         except Exception as error:
-            self.log.log_error(f'元素内容获取失败,{error}')
+            self.log.error(f'元素内容获取失败,{error}')
 
     # 切换句柄，关闭旧的页面
     def switch_handle(self, num):
@@ -124,9 +124,9 @@ class Driver(object):
             handles = self.driver.window_handles
             self.driver.close()
             self.driver.switch_to.window(handles[num])
-            self.log.log_info(f'切换到页面：{handles[num]}')
+            self.log.info(f'切换到页面：{handles[num]}')
         except Exception as error:
-            self.log.log_error(f'句柄切换失败,{error}')
+            self.log.error(f'句柄切换失败,{error}')
 
     # 获取当前句柄的title
     def browser_title(self):
@@ -134,10 +134,10 @@ class Driver(object):
         :return: 页面title内容
         '''
         try:
-            self.log.log_info(f'当前页面的title：{self.driver.title}')
+            self.log.info(f'当前页面的title：{self.driver.title}')
             return self.driver.title
         except Exception as error:
-            self.log.log_error(f'页面标题获取失败,{error}')
+            self.log.error(f'页面标题获取失败,{error}')
 
     # 关闭标签页
     def close_tag(self):
@@ -146,9 +146,9 @@ class Driver(object):
         '''
         try:
             self.driver.close()
-            self.log.log_info('关闭标签页')
+            self.log.info('关闭标签页')
         except Exception as error:
-            self.log.log_error(f'标签页关闭失败,错误提示：{error}')
+            self.log.error(f'标签页关闭失败,错误提示：{error}')
 
     # 释放浏览器资源
     def quite_browser(self):
@@ -156,4 +156,4 @@ class Driver(object):
         关闭浏览器，释放资源
         '''
         self.driver.quit()
-        self.log.log_info('关闭浏览器，释放资源')
+        self.log.info('关闭浏览器，释放资源')
