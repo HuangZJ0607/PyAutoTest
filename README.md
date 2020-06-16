@@ -21,7 +21,7 @@ TestSuites.py  ——> 用于执行测试用例
 >>修改：日志模块封装的实现方法，TestCase_API_demo.py文件新增了test_interface用于批量跑接口测试
 ***
 >2020/06/16 20:06
->>修改：日志封装方法取消重写的内容
+>>修改：日志封装方法取消重写的内容  
 >>新增：TestCase_API_demo.py文件增加断言方法
 ***
 Please wait for the next update!!!
