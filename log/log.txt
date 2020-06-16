@@ -1,8 +1,6 @@
-[2020/06/15 22:16:07][HTTPClient.py][INFO] >>>---开始请求接口地址：http://39.98.138.157:5000/api/demo，请求方法：get，接口参数：{"username": "admin", "password": "123456"}
-[2020/06/15 22:16:07][HTTPClient.py][INFO] 接口响应值：{'data': [{'from': 'cemaxueyuan', 'name': 'hello,yideng'}, {'from': 'cemaxueyuan', 'name': 'hello,xuzhu'}, {'from': 'cemaxueyuan', 'name': 'hello,susu'}], 'httpstatus': 200}
-[2020/06/15 22:16:07][HTTPClient.py][INFO] >>>---开始请求接口地址：http://39.98.138.157:5000/api/demo，请求方法：get，接口参数：{"username": "admin", "password": "123456"}
-[2020/06/15 22:16:07][HTTPClient.py][INFO] 接口响应值：{'data': [{'from': 'cemaxueyuan', 'name': 'hello,yideng'}, {'from': 'cemaxueyuan', 'name': 'hello,xuzhu'}, {'from': 'cemaxueyuan', 'name': 'hello,susu'}], 'httpstatus': 200}
-[2020/06/15 22:16:07][HTTPClient.py][INFO] >>>---开始请求接口地址：http://39.98.138.157:5000/api/demo，请求方法：get，接口参数：{"username": "admin", "password": "123456"}
-[2020/06/15 22:16:08][HTTPClient.py][INFO] 接口响应值：{'data': [{'from': 'cemaxueyuan', 'name': 'hello,yideng'}, {'from': 'cemaxueyuan', 'name': 'hello,xuzhu'}, {'from': 'cemaxueyuan', 'name': 'hello,susu'}], 'httpstatus': 200}
-[2020/06/15 22:16:08][HTTPClient.py][INFO] >>>---开始请求接口地址：http://39.98.138.157:5000/api/demo，请求方法：get，接口参数：{"username": "admin", "password": "123456"}
-[2020/06/15 22:16:08][HTTPClient.py][INFO] 接口响应值：{'data': [{'from': 'cemaxueyuan', 'name': 'hello,yideng'}, {'from': 'cemaxueyuan', 'name': 'hello,xuzhu'}, {'from': 'cemaxueyuan', 'name': 'hello,susu'}], 'httpstatus': 200}
+[2020/06/16 18:27:48][HTTPClient.py][INFO] >>--开始测试用例1请求接口地址：http://39.98.138.157:5000/api/demo，请求方法：get，接口参数：{"username": "admin", "password": "123456"}
+[2020/06/16 18:27:48][HTTPClient.py][INFO] 接口响应值：{'data': [{'from': 'cemaxueyuan', 'name': 'hello,yideng'}, {'from': 'cemaxueyuan', 'name': 'hello,xuzhu'}, {'from': 'cemaxueyuan', 'name': 'hello,susu'}], 'httpstatus': 200}
+[2020/06/16 18:27:48][HTTPClient.py][INFO] >>--开始测试用例2请求接口地址：http://39.98.138.157:5000/api/demo，请求方法：get，接口参数：{"username": "admin", "password": "123456"}
+[2020/06/16 18:27:48][HTTPClient.py][INFO] 接口响应值：{'data': [{'from': 'cemaxueyuan', 'name': 'hello,yideng'}, {'from': 'cemaxueyuan', 'name': 'hello,xuzhu'}, {'from': 'cemaxueyuan', 'name': 'hello,susu'}], 'httpstatus': 200}
+[2020/06/16 18:27:48][HTTPClient.py][INFO] >>--开始测试用例3请求接口地址：http://39.98.138.157:5000/api/demo，请求方法：get，接口参数：{"username": "admin", "password": "123456"}
+[2020/06/16 18:27:48][HTTPClient.py][INFO] 接口响应值：{'data': [{'from': 'cemaxueyuan', 'name': 'hello,yideng'}, {'from': 'cemaxueyuan', 'name': 'hello,xuzhu'}, {'from': 'cemaxueyuan', 'name': 'hello,susu'}], 'httpstatus': 200}

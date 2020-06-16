@@ -28,8 +28,3 @@ class Get_Config:
             return op
         except Exception as error:
             raise ('文件读取错误', error)
-
-
-if __name__ == '__main__':
-    t = Get_Config().get_config('logging', 'logging_switch')
-    print(t)

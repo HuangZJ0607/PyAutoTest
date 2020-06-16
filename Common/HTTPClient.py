@@ -18,6 +18,7 @@ class Request:
     '''
         封装发送http请求的类
     '''
+    index = 0
 
     def __init__(self):
         '''
@@ -79,6 +80,7 @@ class Request:
         :param headers: 接口请求头
         :return: 返回接口的返回值
         '''
+        Request.index += 1
         if headers:
             # 转成字典类型
             for key, value in headers.items():
@@ -93,7 +95,7 @@ class Request:
         # 请求类型转成大写
         methon = method.upper()
         res = ''
-        log.info('>>>---开始请求接口地址：{0}，请求方法：{1}，接口参数：{2}'.format(self.url, method, data))
+        log.info(f'>>--开始测试用例{Request.index}请求接口地址：{self.url}，请求方法：{method}，接口参数：{data}')
         # 判断请求类型
         if methon == 'GET':
             res = self.get(data)
