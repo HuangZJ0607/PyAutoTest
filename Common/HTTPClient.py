@@ -5,6 +5,7 @@
 import requests
 from Common.Log import Log
 from Common.config import Get_Config
+from Common.Mysql import connect_mysql
 import json
 
 log = Log().logger
@@ -14,7 +15,7 @@ class RequestFail(Exception):
     pass
 
 
-class Request:
+class HTTPClient:
     '''
         封装发送http请求的类
     '''
@@ -26,6 +27,10 @@ class Request:
             init方法每次实例化的时候，自动调用init方法
         '''
         self.init_url_headers()
+
+    def get_mysql_data(self, sql):
+        sql = connect_mysql(sql)
+        return sql
 
     def init_url_headers(self):
         '''
@@ -80,7 +85,7 @@ class Request:
         :param headers: 接口请求头
         :return: 返回接口的返回值
         '''
-        Request.index += 1
+        HTTPClient.index += 1
         if headers:
             # 转成字典类型
             for key, value in headers.items():
@@ -95,7 +100,7 @@ class Request:
         # 请求类型转成大写
         methon = method.upper()
         res = ''
-        log.info(f'>>--开始测试用例{Request.index}请求接口地址：{self.url}，请求方法：{method}，接口参数：{data}')
+        log.info(f'>>--开始测试用例{HTTPClient.index}请求接口地址：{self.url}，请求方法：{method}，接口参数：{data}')
         # 判断请求类型
         if methon == 'GET':
             res = self.get(data)
@@ -109,4 +114,4 @@ class Request:
 
 
 if __name__ == '__main__':
-    res = Request().send_request(method='get', name='demo')
+    res = HTTPClient().send_request(method='get', name='demo')

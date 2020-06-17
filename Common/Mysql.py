@@ -11,15 +11,12 @@ host = Get_Config().get_config('mysql', 'host')
 port = int(Get_Config().get_config('mysql', 'port'))
 user = Get_Config().get_config('mysql', 'user')
 password = Get_Config().get_config('mysql', 'password')
-database=Get_Config().get_config('mysql','database')
-con = pymysql.connect(host=host, port=port, user=user, password=password, charset='utf8', database=database)
-cursor = con.cursor()
-# cur.execute('show databases')
-# for x in cur:
-#     print(x)
+database = Get_Config().get_config('mysql', 'database')
 
-cursor.execute("select * from test limit 5")
-res = cursor.fetchall()
-for x in res:
-    print(x)
-# cursor.close()
+
+def connect_mysql(sql):
+    con = pymysql.connect(host=host, port=port, user=user, password=password, charset='utf8', database=database)
+    cursor = con.cursor()
+    cursor.execute(sql)
+    res = cursor.fetchall()
+    return res

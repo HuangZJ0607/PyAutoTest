@@ -3,26 +3,27 @@
     request:
         method: get
         interface_name: demo
-        data: {"username":"admin","password":"123456"}
-        headers: ''
+        parmars: {"username":"admin","password":"123456"}
+        headers:
     assert:
         from1: cemaxueyuan
-
 -
     case_name: demo2
     request:
         method: get
         interface_name: demo
-        data: {"username":"admin","password":"123456"}
-        headers: ''
+        parmars: {"username":"admin","password":"123456"}
+        headers:
     assert:
         httpstatus123: 200
 -
-    case_name: demo3
+    case_name: 登录
     request:
-        method: get
-        interface_name: demo
-        data: {"username":"admin","password":"123456"}
-        headers: ''
+        method: post
+        interface_name: login
+        parmars: {"username":"admin","password":"123456"}
+        headers:
     assert:
-        from: 123132
+        msg: success
+        name: admin
+        token : select * from token where id=1
