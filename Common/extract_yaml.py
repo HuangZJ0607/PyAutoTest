@@ -25,8 +25,3 @@ def read_yaml_extract(data):
         data = cfg[data]
         # print(type(cfg),cfg)
         return data
-
-
-# extract_dict = {"token": '123123','name':'hahaha'}
-# write_yaml(extract_dict)
-headers = {"token": '${{token_name}}'}
