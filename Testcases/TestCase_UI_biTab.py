@@ -10,11 +10,12 @@ from ddt import ddt, file_data
 from Common.config import Get_Config
 from Common import FilePath
 
+
 @ddt
 class biTab(unittest.TestCase):
     def setUp(self) -> None:
         # 访问指定URL
-        self.d = Driver(Get_Config().get_Url('ui_url'), 'chrome')
+        self.d = Driver(Get_Config().get_config('url', 'ui_url'), 'chrome')
 
     def tearDown(self) -> None:
         self.d.quite_browser()

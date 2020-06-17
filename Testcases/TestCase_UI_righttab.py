@@ -14,7 +14,7 @@ from Common.config import Get_Config
 @ddt
 class righttab(unittest.TestCase):
     def setUp(self) -> None:
-        self.d = Driver(Get_Config().get_Url('ui_url'), 'chrome')
+        self.d = Driver(Get_Config().get_config('url', 'ui_url'), 'chrome')
 
     def tearDown(self) -> None:
         self.d.quite_browser()

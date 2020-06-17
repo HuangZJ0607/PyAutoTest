@@ -3,32 +3,12 @@
 # @File     :TestCase_API_demo.py
 # @Time     :2020/6/11 14:50
 import time
-import unittest, pymysql
+import unittest
 from HTMLTestRunner import HTMLTestRunner
 from Common.HTTPClient import HTTPClient
-from Common.Log import Log
 from ddt import ddt, data, file_data
 from Common import FilePath
-
-cases_info = [
-    {
-        "case_name": "例子1",
-        "method": "get",
-        "interface_name": "demo",
-        "data": "",
-        "headers": "",
-        "assert": {
-            'data': [{'from': 'cemaxueyuan', 'name': 'hello,yideng'}, {'from': 'cemaxueyuan', 'name': 'hello,xuzhu'},
-                     {'from': 'cemaxueyuan', 'name': 'hello,susu'}], 'httpstatus': 200}
-    },
-    {
-        "case_name": "例子2",
-        "method": "get",
-        "interface_name": "demo",
-        "data": "",
-        "headers": "",
-        "assert": {'from1': 'cemaxueyuan'}
-    }]
+from Common.extract_yaml import write_yaml
 
 
 @ddt
@@ -65,6 +45,12 @@ class test_API(unittest.TestCase):
         '''
         res = self.r.send_request(method=data['request']['method'], name=data['request']['interface_name'],
                                   data=data['request']['parmars'], headers=data['request']['headers'])
+        # 提取变量
+        if 'extract' in data and data['extract']:
+            for key, value in data['extract'].items():
+                extract = {}
+                extract[key] = res[value]
+                write_yaml(extract)
         self.vaildate(data['assert'], res)
 
     def vaildate(self, expect, actual):

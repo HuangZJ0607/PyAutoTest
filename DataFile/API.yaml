@@ -1,10 +1,22 @@
 -
+    case_name: 登录
+    request:
+        method: post
+        interface_name: login
+        parmars: {"username":"admin","password":"123456"}
+        headers:
+    assert:
+        msg: success
+        name: admin
+        token : select * from token where id=1
+    extract: {"token_name":token}
+-
     case_name: demo1
     request:
         method: get
         interface_name: demo
         parmars: {"username":"admin","password":"123456"}
-        headers:
+        headers: {"token":${{token_name}}}
     assert:
         from1: cemaxueyuan
 -
@@ -16,14 +28,3 @@
         headers:
     assert:
         httpstatus123: 200
--
-    case_name: 登录
-    request:
-        method: post
-        interface_name: login
-        parmars: {"username":"admin","password":"123456"}
-        headers:
-    assert:
-        msg: success
-        name: admin
-        token : select * from token where id=1

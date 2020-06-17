@@ -7,6 +7,7 @@ from Common.Log import Log
 from Common.config import Get_Config
 from Common.Mysql import connect_mysql
 import json
+from Common.extract_yaml import read_yaml_extract
 
 log = Log().logger
 
@@ -38,7 +39,7 @@ class HTTPClient:
         '''
         self.url = Get_Config().get_config('url', 'api_url')
         self.headers = {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         }
 
     def get(self, data):
@@ -85,11 +86,19 @@ class HTTPClient:
         :param headers: 接口请求头
         :return: 返回接口的返回值
         '''
+        # 用例执行数量
         HTTPClient.index += 1
+        # headers判断逻辑
         if headers:
             # 转成字典类型
             for key, value in headers.items():
+                # 若存在类似于${{get_token}}格式的，则将内容提取出来，放到self.headers里面，也就是所谓的参数化
+                if value.startswith("${{") and value.endswith("}}"):
+                    value = value.split("{{")[1].split("}}")[0]
+                    value = read_yaml_extract(value)
                 self.headers[key] = value
+
+        # data判断逻辑
         if data:
             # 字典类型转换成json字符串
             if isinstance(data, dict):
@@ -100,7 +109,6 @@ class HTTPClient:
         # 请求类型转成大写
         methon = method.upper()
         res = ''
-        log.info(f'>>--开始测试用例{HTTPClient.index}请求接口地址：{self.url}，请求方法：{method}，接口参数：{data}')
         # 判断请求类型
         if methon == 'GET':
             res = self.get(data)
@@ -108,6 +116,7 @@ class HTTPClient:
             res = self.post(data, files)
         elif method == 'DELETE':
             res = self.delete(data)
+        log.info(f'>>--开始测试用例{HTTPClient.index}请求接口地址：{self.url}，请求方法：{method}，接口参数：{data}')
         log.info('接口响应值：{}'.format(res))
         self.init_url_headers()
         return res
