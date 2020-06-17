@@ -13,3 +13,5 @@ def nowpath():
 def fatherpath():
     dir_path = dirname(dirname(abspath(__file__)))
     return dir_path
+print(nowpath())
+print(fatherpath())

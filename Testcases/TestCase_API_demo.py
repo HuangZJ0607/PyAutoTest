@@ -2,6 +2,9 @@
 # @Author   :hzj
 # @File     :TestCase_API_demo.py
 # @Time     :2020/6/11 14:50
+import os, sys
+
+sys.path.append(os.getcwd())
 import time
 import unittest
 from HTMLTestRunner import HTMLTestRunner
@@ -10,6 +13,8 @@ from ddt import ddt, data, file_data
 from Common import FilePath
 from Common.extract_yaml import write_yaml
 import pytest
+
+
 
 @ddt
 class test_API(unittest.TestCase):

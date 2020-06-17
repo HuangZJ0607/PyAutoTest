@@ -2,6 +2,9 @@
 # @Author   :hzj
 # @File     :TestCase_UI_biTab.py
 # @Time     :2020/5/25 10:16
+import os, sys
+
+sys.path.append(os.getcwd())
 from Common.Driver import Driver
 from selenium.webdriver.common.by import By
 from time import sleep
