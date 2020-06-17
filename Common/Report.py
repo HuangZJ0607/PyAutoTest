@@ -15,7 +15,7 @@ class Report:
 
     def __init__(self):
         now = time.strftime('%Y_%m_%d_%H_%M_%S', time.localtime())
-        self.re_path = FilePath.fatherpath() + '/Test_Report/' + now + '_report.html'
+        self.re_path = FilePath.fatherpath() + '/Output/report_' + now + '.html'
 
     def run(self, suite):
         with open(self.re_path, 'wb') as fp:

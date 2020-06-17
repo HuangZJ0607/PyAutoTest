@@ -1,12 +1,12 @@
 -
   title :  动画-哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
   xpath: //*[@id="primaryChannelMenu"]/span[1]/div[2]/a/span
-#-
-#  title :  番剧 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[2]/div[2]/a/span
-#-
-#  title :  音乐 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[3]/div[2]/a/span
+-
+  title :  番剧 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
+  xpath: //*[@id="primaryChannelMenu"]/span[2]/div[2]/a/span
+-
+  title :  音乐 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
+  xpath: //*[@id="primaryChannelMenu"]/span[3]/div[2]/a/span
 #-
 #  title :  国创 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
 #  xpath: //*[@id="primaryChannelMenu"]/span[4]/div[2]/a/span

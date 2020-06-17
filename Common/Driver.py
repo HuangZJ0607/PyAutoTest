@@ -32,15 +32,15 @@ class Driver(object):
             # 判断参数是哪种浏览器
             if browser == 'CHROME':
                 self.driver = webdriver.Chrome()
-                self.log.log_info('调用Chrome浏览器')
+                self.log.info('调用Chrome浏览器')
             elif browser == 'FIREFOX':
                 self.driver = webdriver.Firefox()
-                self.log.log_info('调用Firefox浏览器')
+                self.log.info('调用Firefox浏览器')
             elif browser == 'IE':
                 self.driver = webdriver.Ie()
-                self.log.log_info('调用ie浏览器')
+                self.log.info('调用ie浏览器')
         except Exception as error:
-            self.log.log_error(f'浏览器启动失败')
+            self.log.error(f'浏览器启动失败')
             raise error
 
     # 访问指定URL
@@ -53,9 +53,9 @@ class Driver(object):
         try:
             self.driver.get(url)
             self.driver.maximize_window()
-            self.log.logger.log_info(f'访问url：{url}')
+            self.log.info(f'访问url：{url}')
         except Exception as error:
-            self.log.log_error(f'地址访问错误：{error}')
+            self.log.error(f'地址访问错误：{error}')
             raise error
 
     # 定位元素

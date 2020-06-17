@@ -5,6 +5,7 @@
 import logging, os
 from Common import FilePath
 from Common.config import Get_Config
+import time
 
 switch = Get_Config().get_config('logging', 'switch')
 level = Get_Config().get_config('logging', 'level').upper()
@@ -25,7 +26,7 @@ class Log:
         #  这里进行判断，如果logger.handlers列表为空，则添加，否则，直接去写日志
         if not self.logger.handlers:
             self.consolelogging()
-        # 判断是否打印日志到日志文件
+            # 判断是否打印日志到日志文件
             if switch == '0':
                 self.filelogging()
             elif switch == '1':
@@ -40,7 +41,8 @@ class Log:
         self.logger.addHandler(sh)
 
     def filelogging(self):
-        file_path = FilePath.fatherpath() + '/log/log.txt'
+        now = time.strftime('%Y_%m_%d_%H_%M_%S', time.localtime())
+        file_path = FilePath.fatherpath() + '/Output/log_' + now + '.txt'
         # 判断是否存在日志文件，是则删除
         if os.path.exists(file_path):
             os.remove(file_path)

@@ -9,10 +9,11 @@ import unittest
 from ddt import ddt, file_data
 from Common.config import Get_Config
 from Common import FilePath
+import pytest
 
 
 @ddt
-class biTab(unittest.TestCase):
+class test_biTab(unittest.TestCase):
     def setUp(self) -> None:
         # 访问指定URL
         self.d = Driver(Get_Config().get_config('url', 'ui_url'), 'chrome')
@@ -31,4 +32,5 @@ class biTab(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    # unittest.main()
+    pytest.main(['-s', 'TestCase_UI_biTab.py', '--html=../Output/pytest.html'])

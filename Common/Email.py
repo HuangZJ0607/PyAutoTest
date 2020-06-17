@@ -75,7 +75,7 @@ class Email:
 
     def new_report(self):
         # 列出目录下所有文件和文件夹保存到lists里面
-        test_report = FilePath.fatherpath() + '/Test_Report/'
+        test_report = FilePath.fatherpath() + '/Output/'
         lists = os.listdir(test_report)
 
         # lists里的文件按照时间排序
