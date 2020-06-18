@@ -3,9 +3,11 @@
 # @File     :extract_yaml.py
 # @Time     :2020/6/17 13:28
 import yaml
-from Common.FilePath import fatherpath
+import os
 
-yaml_path = fatherpath() + '/DataFile/extract.yaml'
+path = os.path.dirname(os.path.abspath(__file__))
+fpath=os.path.dirname(path)
+yaml_path = fpath + './DataFile/extract.yaml'
 
 
 def write_yaml(extract_dict):

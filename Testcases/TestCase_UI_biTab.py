@@ -8,32 +8,32 @@ sys.path.append(os.getcwd())
 from Common.Driver import Driver
 from selenium.webdriver.common.by import By
 from time import sleep
-import unittest
 from ddt import ddt, file_data
-from Common.config import Get_Config
-from Common import FilePath
+from Config.config import Get_Config
 import pytest
+from os.path import *
 
+path = dirname(dirname(abspath(__file__)))
 
 @ddt
-class test_biTab(unittest.TestCase):
-    def setUp(self) -> None:
+class Test_biTab:
+    def setup(self) -> None:
         # 访问指定URL
-        self.d = Driver(Get_Config().get_config('url', 'ui_url'), 'chrome')
+        self.driver = Driver(Get_Config().get_config('url', 'ui_url'), 'chrome')
 
-    def tearDown(self) -> None:
-        self.d.quite_browser()
+    def teardown(self) -> None:
+        self.driver.quite_browser()
 
-    @file_data(FilePath.fatherpath() + '/DataFile/tab_content.yaml')
+    @file_data(path + '/DataFile/tab_content.yaml')
     def test_tab(self, **c):
         xpath = c.get('xpath')
         title = c.get('title')
-        self.locator = (By.XPATH, xpath)
-        self.d.click_element(self.locator)
+        locator = (By.XPATH, xpath)
+        self.driver.click_element(locator)
         sleep(1)
-        self.assertEqual(self.d.browser_title(), title, msg="内容不相同！！！")
+        assert self.driver.browser_title() == title
+
 
 
 if __name__ == '__main__':
-    # unittest.main()
-    pytest.main(['-s', 'TestCase_UI_biTab.py', '--html=../Output/pytest.html'])
+    pytest.main(['-s', 'TestCase_UI_biTab.py', '--html=../Log/pytest.html'])

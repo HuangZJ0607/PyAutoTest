@@ -6,7 +6,9 @@
     这里是配置文件
 '''
 from configparser import ConfigParser
-from Common import FilePath
+import os
+
+path = os.path.dirname(os.path.abspath(__file__))
 
 
 class Get_Config:
@@ -14,8 +16,9 @@ class Get_Config:
     def __init__(self):
         # 实例化ConfigParser对象
         self.cp = ConfigParser()
+
         # 读取ini文件
-        self.cp.read(FilePath.fatherpath() + '/config.ini', encoding='utf-8')
+        self.cp.read(path + '/config.ini', encoding='utf-8')
 
     def get_config(self, section, option):
         '''读取ini文件，并返回对应的option值
@@ -28,3 +31,7 @@ class Get_Config:
             return op
         except Exception as error:
             raise ('文件读取错误', error)
+
+
+if __name__ == '__main__':
+    print(Get_Config().get_config('email', 'switch'))

@@ -3,10 +3,10 @@
 # @File     :Log.py
 # @Time     :2020/6/7 20:50
 import logging, os
-from Common import FilePath
-from Common.config import Get_Config
+from Config.config import Get_Config
 import time
-
+path = os.path.dirname(__file__)
+fpath = os.path.dirname(path)
 switch = Get_Config().get_config('logging', 'switch')
 level = Get_Config().get_config('logging', 'level').upper()
 
@@ -42,7 +42,7 @@ class Log:
 
     def filelogging(self):
         now = time.strftime('%Y_%m_%d_%H_%M_%S', time.localtime())
-        file_path = FilePath.fatherpath() + '/Output/log_' + now + '.txt'
+        file_path = fpath + '/Log/log_' + now + '.txt'
         # 判断是否存在日志文件，是则删除
         if os.path.exists(file_path):
             os.remove(file_path)
@@ -53,3 +53,5 @@ class Log:
         # 添加文件处理器到日志器
         self.logger.addHandler(fh)
         fh.close()
+if __name__ == '__main__':
+    Log().logger.info('123123')

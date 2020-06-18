@@ -1,0 +1,9 @@
+pytest
+ptytest-xdist
+pytest-rerunfailures
+pytest-html
+requests
+PyYAML
+PyMySQL
+selenium
+ddt

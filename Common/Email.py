@@ -7,29 +7,33 @@ from email.header import Header
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from Common.Log import Log
-from Common import FilePath
-from Common.config import Get_Config
+
+from Config.config import Get_Config
 import time
 
 # 实例化日志打印模块
 log = Log().logger
-switch = Get_Config().get_config('email', 'email_switch')
+
+path = os.path.dirname(os.path.abspath(__file__))
+fpath = os.path.dirname(os.path.abspath(path))
 
 
 class Email:
-    '''i
+    switch = Get_Config().get_config('email', 'switch')
+    '''
         把邮件发送的模块封装起来
     '''
 
     def __init__(self):
-        if switch == '0':
+        if self.switch == '0':
             log.info('邮件发送准备中~')
             self.setemail()
-        elif switch == '1':
+        elif self.switch == '1':
             log.info('根据配置文件，邮件不发送！')
             pass
 
     def setemail(self):
+
         # 发送人的邮箱地址
         self.sender = Get_Config().get_config('email', 'sender')
         # 接受人的邮箱地址
@@ -74,17 +78,15 @@ class Email:
             log.error(f'邮件发送失败，{error}')
 
     def new_report(self):
-        # 列出目录下所有文件和文件夹保存到lists里面
-        test_report = FilePath.fatherpath() + '/Output/'
-        lists = os.listdir(test_report)
+        try:
+            # 列出目录下所有文件和文件夹保存到lists里面
+            test_report = fpath + './Report/'
+            lists = os.listdir(test_report)
+            # lists里的文件按照时间排序
+            lists.sort(key=lambda fn: os.path.getmtime(test_report + fn))
 
-        # lists里的文件按照时间排序
-        lists.sort(key=lambda fn: os.path.getmtime(test_report + fn))
-
-        # 获取最新的文件保存到new_file
-        new_file = os.path.join(test_report, lists[-1])
-        return new_file
-
-
-if __name__ == '__main__':
-    Email()
+            # 获取最新的文件保存到new_file
+            new_file = os.path.join(test_report, lists[-1])
+            return new_file
+        except Exception as e:
+            raise ('邮件发送发生未知错误', e)

@@ -4,7 +4,7 @@
 # @Time     :2020/6/11 15:34
 import requests
 from Common.Log import Log
-from Common.config import Get_Config
+from Config.config import Get_Config
 from Common.Mysql import connect_mysql
 import json
 from Common.extract_yaml import read_yaml_extract
