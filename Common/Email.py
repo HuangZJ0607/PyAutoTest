@@ -19,10 +19,20 @@ fpath = os.path.dirname(os.path.abspath(path))
 
 
 class Email:
-    switch = Get_Config().get_config('email', 'switch')
     '''
         把邮件发送的模块封装起来
     '''
+    switch = Get_Config().get_config('email', 'switch')
+    # 发送人的邮箱地址
+    sender = Get_Config().get_config('email', 'sender')
+    # 接受人的邮箱地址
+    receiver_list = Get_Config().get_config('email', 'receiver')
+    # 设置邮箱服务器
+    host = Get_Config().get_config('email', 'host')
+    # 设置邮箱端口
+    port = Get_Config().get_config('email', 'port')
+    # 设置psw授权码
+    password = Get_Config().get_config('email', 'psw')
 
     def __init__(self):
         if self.switch == '0':
@@ -33,18 +43,6 @@ class Email:
             pass
 
     def setemail(self):
-
-        # 发送人的邮箱地址
-        self.sender = Get_Config().get_config('email', 'sender')
-        # 接受人的邮箱地址
-        # receiver = config.email_receiver
-        self.receiver_list = Get_Config().get_config('email', 'receiver')
-        # 设置邮箱服务器
-        self.host = Get_Config().get_config('email', 'host')
-        # 设置邮箱端口
-        self.port = Get_Config().get_config('email', 'port')
-        # 设置psw授权码
-        self.password = Get_Config().get_config('email', 'psw')
         # 实例化MIMEMultipart对象
         self.message = MIMEMultipart()
         # 设置邮件的发送者
@@ -56,6 +54,7 @@ class Email:
         self.message['Subject'] = Header('自动化测试报告', 'utf-8')
         # 设置邮件主体文本内容
         now = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime())
+        # 设置邮件文本内容
         email_text = now + ' 自动化测试报告，详见附件'
         # 设置邮件格式
         self.message.attach(MIMEText(email_text, _subtype='plain', _charset='utf-8'))
@@ -73,14 +72,14 @@ class Email:
             smtpobj.login(self.sender, self.password)
             # 发送邮件
             smtpobj.sendmail(self.sender, self.receiver_list, self.message.as_string())
-            log.info(f'邮件发送成功，附件名称为：{self.new_report()}')
+            log.info(f'邮件发送成功，附件为：{self.new_report()}')
         except Exception as error:
             log.error(f'邮件发送失败，{error}')
 
     def new_report(self):
         try:
             # 列出目录下所有文件和文件夹保存到lists里面
-            test_report = fpath + './Report/'
+            test_report = fpath + '/Report/'
             lists = os.listdir(test_report)
             # lists里的文件按照时间排序
             lists.sort(key=lambda fn: os.path.getmtime(test_report + fn))
@@ -90,3 +89,7 @@ class Email:
             return new_file
         except Exception as e:
             raise ('邮件发送发生未知错误', e)
+
+
+if __name__ == '__main__':
+    Email()
