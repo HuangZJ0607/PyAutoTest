@@ -12,10 +12,6 @@ from Common.extract_yaml import read_yaml_extract
 log = Log().logger
 
 
-class RequestFail(Exception):
-    pass
-
-
 class HTTPClient:
     '''
         封装发送http请求的类
@@ -50,9 +46,10 @@ class HTTPClient:
         try:
             # 发起get请求
             res = requests.get(url=self.url, params=data, headers=self.headers)
+            # return res.json()
             return res.json()
         except BaseException as error:
-            raise RequestFail('接口请求发生错误：', error)
+            raise ('接口请求发生错误：', error)
 
     def post(self, data, files):
         '''封装post请求的方法
@@ -64,7 +61,7 @@ class HTTPClient:
             res = requests.post(url=self.url, data=data, headers=self.headers, files=files)
             return res.json()
         except BaseException as error:
-            raise RequestFail('接口请求发生错误：', error)
+            raise ('接口请求发生错误：', error)
 
     def delete(self, data):
         '''封装delete请求的方法
@@ -76,7 +73,7 @@ class HTTPClient:
             res = requests.delete(url=self.url, data=data, headers=self.headers)
             return res.json()
         except BaseException as error:
-            raise RequestFail('接口请求发生错误：', error)
+            raise ('接口请求发生错误：', error)
 
     def send_request(self, method, name=None, data=None, headers=None, files=None):
         '''封装发送请求的方法
@@ -120,6 +117,40 @@ class HTTPClient:
         log.info('接口响应值：{}'.format(res))
         self.init_url_headers()
         return res
+
+    def vaildate(self, expect, actual):
+        '''
+        校验测试结果的函数
+        :param expect: 预期结果
+        :param actual: 实际结果
+        :return:
+        '''
+        for key, value in expect.items():
+            # 预期的key在实际结果返回值的key里面
+            if key in actual:
+                # 当预期结果的value是字符串类型时
+                if isinstance(value, str):
+                    # 将sql语句转换成数据库数据。如select * from token where id = 1 这个格式判断为一个数据库语句 select, update....
+                    if value.startswith('select') and 'from' in value or (
+                            value.startswith('update') and 'set' in value):
+                        # 从数据库中读取value
+                        value_after = self.get_mysql_data(value)
+                        # 预期结果与实际结果进行比较
+                        assert value_after == actual[key]
+                    else:
+                        # 除sql语句外的string类型的预期结果与实际结果进行比较
+                        assert value == actual[key]
+                # 当预期结果的value是int类型时
+                elif isinstance(value, int):
+                    assert value == actual[key]
+            # 预期的key不在实际结果返回值的key里面
+            else:
+                for _key, _value in actual.items():
+                    if isinstance(_value, dict) and (key in _value):
+                        expect_new = {}
+                        expect_new[key] = value
+                        # 递归，重新走判断逻辑
+                        self.vaildate(expect_new, _value)
 
 
 if __name__ == '__main__':

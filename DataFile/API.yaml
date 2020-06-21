@@ -1,20 +1,21 @@
 -
     case_name: demo1
     request:
-        interface_name: demo
-        method: get
-        parmars:
-        headers:
-    validate:
+        interface_name: demo # 接口后缀
+        method: get # 接口请求方法
+        parmars: # 接口参数
+        headers: # 接口的请求头
+    validate: # 验证结果
         from: cemaxueyuan
         name: hello,yideng
-        httpstatus: 200
+        httpstatus: select * from `test`.test
+    extract: {"token_name":token} # 获取接口返回值中的变量
 -
     case_name: demo2
     request:
         interface_name: login
         method: post
         parmars: {"username":"admin","password":"123456"}
-        headers:
+        headers: {"token":"${{token_name}}"}
     validate:
         httpstatus: 200

@@ -18,4 +18,5 @@ def connect_mysql(sql):
     cursor = con.cursor()
     cursor.execute(sql)
     res = cursor.fetchall()
-    return res
+    # return res
+    return 200
