@@ -20,3 +20,7 @@ def connect_mysql(sql):
     res = cursor.fetchall()
     # return res
     return 200
+
+
+def close_mysql():
+    pass
