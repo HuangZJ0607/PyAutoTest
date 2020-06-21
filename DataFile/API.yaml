@@ -1,18 +1,20 @@
 -
     case_name: demo1
     request:
-        method: get
         interface_name: demo
+        method: get
         parmars:
         headers:
-    assert:
+    validate:
+        from: cemaxueyuan
+        name: hello,yideng
         httpstatus: 200
 -
     case_name: demo2
     request:
-        method: post
         interface_name: login
+        method: post
         parmars: {"username":"admin","password":"123456"}
         headers:
-    assert:
+    validate:
         httpstatus: 200

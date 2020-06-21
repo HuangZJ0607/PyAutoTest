@@ -26,12 +26,16 @@ class Driver(object):
         :param browser:固定参数，表示浏览器的类型
         :return:浏览器的driver驱动
         '''
+
         try:
             # 将参数browser转成大写
             browser = browser.upper()
             # 判断参数是哪种浏览器
             if browser == 'CHROME':
-                self.driver = webdriver.Chrome()
+                # 配置无头模式，只启动浏览器进程，但看不见页面
+                options = webdriver.ChromeOptions()
+                options.add_argument('--headless')
+                self.driver = webdriver.Chrome(options=options)
                 self.log.info('调用Chrome浏览器')
             elif browser == 'FIREFOX':
                 self.driver = webdriver.Firefox()

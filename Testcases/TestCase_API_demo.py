@@ -43,7 +43,7 @@ class Test_API:
                 extract = {}
                 extract[key] = res[value]
                 write_yaml(extract)
-        self.vaildate(data['assert'], res)
+        self.vaildate(data['validate'], res)
 
     def vaildate(self, expect, actual):
         '''
