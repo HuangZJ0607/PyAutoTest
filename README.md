@@ -26,7 +26,7 @@
 │  └──TestCase_UI_demo.py  
 │  
 │  .gitignore  
-│  install.txt --->记录所有需要安装模块的文件
+│  install.txt --->记录所有需要安装模块的文件  
 │  pytest.ini --->pytest测试的配置文件，核心文件用于命令行执行测试  
 │  README.md  
 │  run.py --->核心文件，用于编译器执行测试  
