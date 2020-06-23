@@ -35,7 +35,7 @@ class Driver(object):
                 # 配置无头模式，只启动浏览器进程，但看不见页面
                 options = webdriver.ChromeOptions()
                 options.add_argument('--headless')
-                self.driver = webdriver.Chrome(options=options)
+                self.driver = webdriver.Chrome()
                 self.log.info('调用Chrome浏览器')
             elif browser == 'FIREFOX':
                 self.driver = webdriver.Firefox()
@@ -126,7 +126,7 @@ class Driver(object):
         '''
         try:
             handles = self.driver.window_handles
-            self.driver.close()
+            self.close_tag()
             self.driver.switch_to.window(handles[num])
             self.log.info(f'切换到页面：{handles[num]}')
         except Exception as error:

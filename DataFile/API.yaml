@@ -9,13 +9,14 @@
         from: cemaxueyuan
         name: hello,yideng
         httpstatus: select * from `test`.test
-    extract: {"token_name":token} # 获取接口返回值中的变量
+#    extract: {"token_name":token} # 获取接口返回值中的变量
 -
     case_name: demo2
     request:
         interface_name: login
         method: post
         parmars: {"username":"admin","password":"123456"}
-        headers: {"token":"${{token_name}}"}
+        headers:
+#        headers: {"token":"${{token_name}}"}
     validate:
         httpstatus: 200

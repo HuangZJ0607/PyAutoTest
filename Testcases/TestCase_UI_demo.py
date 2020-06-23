@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # @Author   :hzj
-# @File     :TestCase_UI_biTab.py
+# @File     :TestCase_UI_demo.py
 # @Time     :2020/5/25 10:16
 import os, sys
 sys.path.append(os.getcwd())
@@ -19,7 +19,7 @@ path = dirname(dirname(abspath(__file__)))
 class Test_biTab:
     def setup(self) -> None:
         # 访问指定URL
-        self.driver = Driver(Get_Config().get_config('url', 'ui_url'), 'chrome')
+        self.driver = Driver(Get_Config().get_config('url', 'bili_url'), 'chrome')
 
     def teardown(self) -> None:
         self.driver.quite_browser()
@@ -35,4 +35,4 @@ class Test_biTab:
 
 
 if __name__ == '__main__':
-    pytest.main(['-s', 'TestCase_UI_biTab.py', '--html=../Report/pytest.html'])
+    pytest.main(['-s', 'TestCase_UI_demo.py', '--html=../Report/pytest.html'])
