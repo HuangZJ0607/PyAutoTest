@@ -102,7 +102,6 @@ class HTTPClient:
                 data = json.dumps(data)
         # 后缀不一定相同，但是前缀是一样的，拼接每次的请求的url
         self.url = self.url + name
-
         # 请求类型转成大写
         methon = method.upper()
         res = ''
@@ -113,6 +112,8 @@ class HTTPClient:
             res = self.post(data, files)
         elif method == 'DELETE':
             res = self.delete(data)
+        else:
+            raise ('接口请求类型错误，无法请求')
         log.info(f'>>--开始测试用例{HTTPClient.index}请求接口地址：{self.url}，请求方法：{method}，接口参数：{data}')
         log.info('接口响应值：{}'.format(res))
         self.init_url_headers()

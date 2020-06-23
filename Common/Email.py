@@ -22,6 +22,9 @@ class Email:
     '''
         把邮件发送的模块封装起来
     '''
+
+    # ---------------------获取邮件相关参数---------------------
+    # 获取邮件发送的开关
     switch = Get_Config().get_config('email', 'switch')
     # 发送人的邮箱地址
     sender = Get_Config().get_config('email', 'sender')
@@ -43,6 +46,7 @@ class Email:
             pass
 
     def setemail(self):
+        # --------------------------发件相关参数--------------------------
         # 实例化MIMEMultipart对象
         self.message = MIMEMultipart()
         # 设置邮件的发送者
@@ -52,6 +56,8 @@ class Email:
         self.message['To'] = Header('这里是测试报告接收者', 'utf-8')
         # 设置邮件的标题
         self.message['Subject'] = Header('自动化测试报告', 'utf-8')
+
+        # --------------------------编辑邮件内容--------------------------
         # 设置邮件主体文本内容
         now = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime())
         # 设置邮件文本内容
@@ -64,6 +70,8 @@ class Email:
         att['Content-Type'] = 'applicationt/octet-stram'
         att['Content-Disposition'] = 'attachment;filename="test_report.html"'
         self.message.attach(att)
+
+        # --------------------------发送邮件--------------------------
         try:
             smtpobj = smtplib.SMTP()
             # 设置邮箱的地址和端口
@@ -77,6 +85,9 @@ class Email:
             log.error(f'邮件发送失败，{error}')
 
     def new_report(self):
+        '''
+            获取Report文件夹下最新的测试报告
+        '''
         try:
             # 列出目录下所有文件和文件夹保存到lists里面
             test_report = fpath + '/Report/'
