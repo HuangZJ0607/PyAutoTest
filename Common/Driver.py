@@ -12,15 +12,15 @@ log = Log().logger
 def open_browser(browser):
     try:
         if browser == 'Chrome':
-            log.info('Chrome浏览器启动中~~')
+            log.info('Chrome浏览器启动中...')
             driver = webdriver.Chrome(options=Options().options_conf())
         else:
-            log.info('{}浏览器启动中~~'.format(browser))
+            log.info('{}浏览器启动中...'.format(browser))
             # python反射机制，browser == Chrome时相当于webdriver.Chrome()
             driver = getattr(webdriver, browser)()
     except Exception as error:
         log.info('调用浏览器异常，默认启动Chrome浏览器，异常信息：{}'.format(error))
-        driver = webdriver.Chrome()
+        driver = webdriver.Chrome(options=Options().options_conf())
     return driver
 
 
@@ -140,7 +140,7 @@ class Driver:
             log.info('显式等待元素{}成功'.format((name, value)))
         except Exception as error:
             log.error('元素{0}等待失败：{1}'.format((name.value), error))
-            raise ('元素{0}等待失败：{1}'.format((name.value), error))
+            # raise ('元素{0}等待失败：{1}'.format((name.value), error))
 
     # -------------------------浏览器释放-------------------------
     def quite(self):
@@ -150,7 +150,11 @@ class Driver:
         log.info('关闭浏览器，释放资源~')
         self.driver.quit()
 
-    # -------------------------元素文本断言-------------------------
+    # -------------------------断言-------------------------
+    '''
+        断言需要再研究研究，没有return一个断言成功与否的值
+    '''
+
     def assert_text(self, name, value, exp):
         '''
             对元素文本内容进行断言
@@ -174,5 +178,7 @@ class Driver:
         try:
             assert reality == exp
             log.info('断言成功，流程正确！')
+            return True
         except Exception as error:
-            log.info('出现异常，异常信息：\n{}'.format(error))
+            log.info('出现异常，异常信息：{}'.format(error))
+            return False

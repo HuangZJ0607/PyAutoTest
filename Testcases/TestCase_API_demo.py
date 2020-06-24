@@ -21,19 +21,6 @@ class Test_API:
 
     @file_data(fpath + './DataFile/API.yaml')
     def test_interface(self, **data):
-        '''
-        所有的接口用例 ，100多组数据， 只用写一个函数的情况下，依次运行所有100接口，
-        而且生成相应的100测试报告
-        httprunner,用例的数据结构，yaml,json
-        list of dict:字典列表
-          {
-            "casename":"登录",
-            "method":"post",
-            "int_name":"login",
-            "data":{"username": "admin", "password": "123456"},
-            "headers":"",
-        }
-        '''
         # 发送请求
         res = self.r.send_request(method=data['request']['method'], name=data['request']['interface_name'],
                                   data=data['request']['parmars'], headers=data['request']['headers'])

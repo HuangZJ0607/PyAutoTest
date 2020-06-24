@@ -100,24 +100,32 @@ class HTTPClient:
             # 字典类型转换成json字符串
             if isinstance(data, dict):
                 data = json.dumps(data)
+
         # 后缀不一定相同，但是前缀是一样的，拼接每次的请求的url
         self.url = self.url + name
-        # 请求类型转成大写
-        methon = method.upper()
-        res = ''
-        # 判断请求类型
-        if methon == 'GET':
-            res = self.get(data)
-        elif method == 'POST':
-            res = self.post(data, files)
-        elif method == 'DELETE':
-            res = self.delete(data)
-        else:
-            raise ('接口请求类型错误，无法请求')
-        log.info(f'>>--开始测试用例{HTTPClient.index}请求接口地址：{self.url}，请求方法：{method}，接口参数：{data}')
-        log.info('接口响应值：{}'.format(res))
-        self.init_url_headers()
-        return res
+
+        # # 请求类型转成小写
+        method = method.lower()
+
+        # res = ''
+        # # 判断请求类型
+        # if method == 'get':
+        #     res = self.get(data)
+        # elif method == 'post':
+        #     res = self.post(data, files)
+        # elif method == 'delete':
+        #     res = self.delete(data)
+        # else:
+        #     raise ('接口请求类型错误，无法请求')
+        try:
+            res = getattr(requests, method)(url=self.url, headers=self.headers, data=data, files=files)
+            log.info(f'>>--开始测试用例<{HTTPClient.index}>，请求接口地址：{self.url}，请求方法：{method}，接口参数：{data}')
+            log.info('接口响应值：{}'.format(res.json()))
+            return res.json()
+        except Exception as error:
+            log.info('接口请求异常:{}'.format(error))
+        finally:
+            self.init_url_headers()
 
     def vaildate(self, expect, actual):
         '''
@@ -141,7 +149,7 @@ class HTTPClient:
                     else:
                         # 除sql语句外的string类型的预期结果与实际结果进行比较
                         assert value == actual[key]
-                # 当预期结果的value是int类型时
+                # 当预期结果的value是int类型时，由于int类型没有'startswith'方法，所以另写一个判断
                 elif isinstance(value, int):
                     assert value == actual[key]
             # 预期的key不在实际结果返回值的key里面

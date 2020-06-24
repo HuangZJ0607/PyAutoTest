@@ -2,14 +2,10 @@
 # @Author   :hzj
 # @File     :demo.py
 # @Time     :2020/6/24 1:27
-from Common.Driver import Driver
+from Common.HTTPClient import HTTPClient
 
-driver = Driver('Chrome')
-driver.visit('http://www.baidu.com')
-driver.wait_y(10)
-driver.input('id', 'kw', '林丹')
-driver.click('id', 'su')
-driver.sleep(3)
-title = driver.title()
-driver.quite()
-print(title)
+h = HTTPClient()
+parmars = '{"username":"admin","password":"123456"}'
+res = h.send_request('posT', 'login', parmars)
+token = res['token']
+print(token)

@@ -31,17 +31,14 @@ class Options:
         # options.add_argument('incognito')
         return options
 
-    # 读取本地缓存，这个操作非常不推荐使用
-
-
+        # 读取本地缓存，这个操作非常不推荐使用
 '''
-    1. 找到本地缓存的位置：通过chrome://version查看
-    2. 传入本地缓存，应用参数 --user-data-dir=
-    3. 加载之前，请关闭所有的浏览器
-    4. 适用在记住登录状态下的URL的访问
-    5. 当输入这个参数后，读取和加载的时间会延长很久，没有很好的办法处理。只有手动先输入一个url让它运行
+            1. 找到本地缓存的位置：通过chrome://version查看
+            2. 传入本地缓存，应用参数 --user-data-dir=
+            3. 加载之前，请关闭所有的浏览器
+            4. 适用在记住登录状态下的URL的访问
+            5. 当输入这个参数后，读取和加载的时间会延长很久，没有很好的办法处理。只有手动先输入一个url让它运行
 '''
-# options.add_argument(r'--user-data-dir=C:\Users\15414\AppData\Local\Google\Chrome\User Data')
-# 去掉警告
-# options.add_argument('disable-infobars')  # 这是老版本的chrome浏览器采用的去掉警告的形式
-# 在新的版本，七十多的版本下，chromeOptions做了一次更新改动
+        # options.add_argument(r'--user-data-dir=C:\Users\15414\AppData\Local\Google\Chrome\User Data')
+        # 去掉警告
+        # options.add_argument('disable-infobars')  # 这是老版本的chrome浏览器采用的去掉警告的形式

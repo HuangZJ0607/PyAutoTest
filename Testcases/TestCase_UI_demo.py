@@ -25,10 +25,11 @@ class Test_biTab:
 
     @file_data(path + '/DataFile/tab_content.yaml')
     def test_tab(self, **c):
-        xpath = c.get('xpath')
         title = c.get('title')
-        self.driver.click('xpath', xpath)
-        self.driver.sleep(1)
+        name = c.get('name')
+        value = c.get('value')
+        self.driver.click(name, value)
+        self.driver.sleep(2)
         assert self.driver.title() == title
 
 

@@ -1,60 +1,80 @@
 -
   title :  动画-哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-  xpath: //*[@id="primaryChannelMenu"]/span[1]/div[2]/a/span
-#-
-#  title :  番剧 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[2]/div[2]/a/span
+  name: xpath
+  value: //*[@id="primaryChannelMenu"]/span[1]/div[2]/a/span
+-
+  title :  番剧 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
+  name: xpath
+  value: //*[@id="primaryChannelMenu"]/span[2]/div[2]/a/span
 #-
 #  title :  音乐 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[3]/div[2]/a/span
+#  name: xpath
+#  value: //*[@id="primaryChannelMenu"]/span[3]/div[2]/a/span
 #-
 #  title :  国创 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[4]/div[2]/a/span
+#  name: xpath
+#  value: //*[@id="primaryChannelMenu"]/span[4]/div[2]/a/span
 #-
 #  title :  舞蹈 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[5]/div[2]/a/span
+#  name: xpath
+#  value: //*[@id="primaryChannelMenu"]/span[5]/div[2]/a/span
 #-
 #  title :  游戏 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[6]/div[2]/a/span
+#  name: xpath
+#  value: //*[@id="primaryChannelMenu"]/span[6]/div[2]/a/span
 #-
 #  title :  科技 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[7]/div[2]/a/span
+#  name: xpath
+#  value: //*[@id="primaryChannelMenu"]/span[7]/div[2]/a/span
 #-
 #  title :  数码 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[8]/div[2]/a/span
+#  name: xpath
+#  value: //*[@id="primaryChannelMenu"]/span[8]/div[2]/a/span
 #-
 #  title :  生活 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[9]/div[2]/a/span
+#  name: xpath
+#  value: //*[@id="primaryChannelMenu"]/span[9]/div[2]/a/span
 #-
 #  title :  鬼畜 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[10]/div[2]/a/span
+#  name: xpath
+#  value: //*[@id="primaryChannelMenu"]/span[10]/div[2]/a/span
 #-
 #  title :  时尚 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[11]/div[2]/a/span
+#  name: xpath
+#  value: //*[@id="primaryChannelMenu"]/span[11]/div[2]/a/span
 #-
 #  title :  哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[12]/div[2]/a/span
+#  name: xpath
+#  value: //*[@id="primaryChannelMenu"]/span[12]/div[2]/a/span
 #-
 #  title :  娱乐 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[13]/div[2]/a/span
+#  name: xpath
+#  value: //*[@id="primaryChannelMenu"]/span[13]/div[2]/a/span
 #-
 #  title :  影视 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[14]/div[2]/a/span
+#  name: xpath
+#  value: //*[@id="primaryChannelMenu"]/span[14]/div[2]/a/span
 #-
 #  title :  放映厅 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[15]/div[2]/a/span
+#  name: xpath
+#  value: //*[@id="primaryChannelMenu"]/span[15]/div[2]/a/span
 #-
 #  title :  搞笑 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[16]/div[2]/a/span
+#  name: xpath
+#  value: //*[@id="primaryChannelMenu"]/span[16]/div[2]/a/span
 #-
 #  title :  动物圈 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[17]/div[2]/a/span
+#  name: xpath
+#  value: //*[@id="primaryChannelMenu"]/span[17]/div[2]/a/span
 #-
 #  title :  美食圈 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[18]/div[2]/a/span
+#  name: xpath
+#  value: //*[@id="primaryChannelMenu"]/span[18]/div[2]/a/span
 #-
 #  title :  单机游戏 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[19]/div[2]/a/span
+#  name: xpath
+#  value: //*[@id="primaryChannelMenu"]/span[19]/div[2]/a/span
 #-
 #  title :  日常 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
-#  xpath: //*[@id="primaryChannelMenu"]/span[20]/div[2]/a/span
+#  name: xpath
+#  value: //*[@id="primaryChannelMenu"]/span[20]/div[2]/a/span
