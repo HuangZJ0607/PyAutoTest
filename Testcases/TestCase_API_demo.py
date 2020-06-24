@@ -7,7 +7,7 @@ import os, sys
 sys.path.append(os.getcwd())
 from Common.HTTPClient import HTTPClient
 from ddt import ddt, data, file_data
-from Common.extract_yaml import write_yaml
+from Common.Yaml_Operation import write_yaml
 import pytest
 
 path = os.path.dirname(__file__)

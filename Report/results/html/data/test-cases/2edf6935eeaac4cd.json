@@ -1,0 +1,73 @@
+{
+  "uid" : "2edf6935eeaac4cd",
+  "name" : "test_tab_00001",
+  "fullName" : "Testcases.TestCase_UI_demo.Test_biTab#test_tab_00001",
+  "historyId" : "a34887f597b080f8480a5bfe28692b6f",
+  "time" : {
+    "start" : 1592985263546,
+    "stop" : 1592985266450,
+    "duration" : 2904
+  },
+  "description" : "test_tab_00001",
+  "descriptionHtml" : "<p>test_tab_00001</p>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "description" : "test_tab_00001",
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "9b71eacf1d6c2dd",
+      "name" : "log",
+      "source" : "9b71eacf1d6c2dd.txt",
+      "type" : "text/plain",
+      "size" : 436
+    } ],
+    "parameters" : [ ],
+    "hasContent" : true,
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "Testcases"
+  }, {
+    "name" : "suite",
+    "value" : "TestCase_UI_demo"
+  }, {
+    "name" : "subSuite",
+    "value" : "Test_biTab"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-OF3E6D7"
+  }, {
+    "name" : "thread",
+    "value" : "14260-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "Testcases.TestCase_UI_demo"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "2edf6935eeaac4cd.json",
+  "parameterValues" : [ ]
+}

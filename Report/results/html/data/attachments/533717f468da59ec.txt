@@ -1,0 +1,5 @@
+INFO     Common.Log:Driver.py:15 Chrome浏览器启动中...
+INFO     Common.Log:Driver.py:39 访问地址：http://www.bilibili.com
+INFO     Common.Log:Driver.py:73 对元素：('xpath', '//*[@id="primaryChannelMenu"]/span[1]/div[2]/a/span')进行点击操作
+INFO     Common.Log:Driver.py:92 当前页面的标题是：动画-哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
+INFO     Common.Log:Driver.py:150 关闭浏览器，释放资源~

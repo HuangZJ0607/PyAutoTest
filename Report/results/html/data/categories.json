@@ -1,0 +1,26 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "name" : "categories",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable\n  (Session info: headless chrome=78.0.3904.70)",
+      "children" : [ {
+        "name" : "test_search",
+        "uid" : "78955d82ed09ef32",
+        "parentUid" : "e88ca3a75a00d80f7882a61a7ec19716",
+        "status" : "broken",
+        "time" : {
+          "start" : 1592986320046,
+          "stop" : 1592986320046,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "e88ca3a75a00d80f7882a61a7ec19716"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ]
+}

@@ -2,6 +2,9 @@
 # @Author   :hzj
 # @File     :Log.py
 # @Time     :2020/6/7 20:50
+'''
+    封装logging日志模块的类
+'''
 import logging, os
 from Config.config import Get_Config
 import time
@@ -12,9 +15,7 @@ level = Get_Config().get_config('logging', 'level').upper()
 
 
 class Log:
-    '''
-        封装了logging模块，调用后回生成控制台日志&日志文件
-    '''
+
 
     def __init__(self):
         self.logger = logging.getLogger(__name__)

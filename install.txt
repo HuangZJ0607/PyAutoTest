@@ -7,3 +7,4 @@ PyYAML
 PyMySQL
 selenium
 ddt
+allure-pytest

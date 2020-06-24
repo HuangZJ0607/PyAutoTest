@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 # @Author   :hzj
-# @File     :extract_yaml.py
+# @File     :Yaml_Operation.py
 # @Time     :2020/6/17 13:28
+'''
+    封装读写yaml文件的方法
+'''
 import yaml
 import os
 

@@ -2,13 +2,11 @@
 # @Author   :hzj
 # @File     :TestCase_shop.py
 # @Time     :2020/6/23 16:22
-import pytest
+import pytest,allure
 from Common.Driver import Driver
 from Config.config import Get_Config
-from selenium.webdriver.common.by import By
-from time import sleep
 
-
+@allure.feature('电商_登录')
 @pytest.fixture()
 def login():
     driver = Driver('Chrome')
@@ -27,6 +25,7 @@ def login():
 
 
 class Test_shop:
+    @allure.feature('电商_商品搜索的用例')
     def test_search(self, login):
         print("执行商品搜索")
 

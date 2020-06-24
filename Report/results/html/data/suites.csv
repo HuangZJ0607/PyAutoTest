@@ -1,0 +1,6 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Wed Jun 24 16:11:35 CST 2020","Wed Jun 24 16:11:35 CST 2020","95","Testcases","TestCase_API_demo","Test_API","","","test_interface_00001","test_interface_00001"
+"passed","Wed Jun 24 16:11:43 CST 2020","Wed Jun 24 16:11:46 CST 2020","2693","Testcases","TestCase_UI_demo","Test_biTab","","","test_tab_00001","test_tab_00001"
+"broken","Wed Jun 24 16:12:00 CST 2020","Wed Jun 24 16:12:00 CST 2020","0","Testcases","TestCase_shop","Test_shop","","","test_search",""
+"passed","Wed Jun 24 16:11:54 CST 2020","Wed Jun 24 16:11:57 CST 2020","3105","Testcases","TestCase_UI_demo","Test_biTab","","","test_tab_00002","test_tab_00002"
+"passed","Wed Jun 24 16:11:35 CST 2020","Wed Jun 24 16:11:35 CST 2020","101","Testcases","TestCase_API_demo","Test_API","","","test_interface_00002","test_interface_00002"

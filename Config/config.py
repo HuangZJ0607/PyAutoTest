@@ -3,7 +3,7 @@
 # @File     :config.py
 # @Time     :2020/5/28 15:29
 '''
-    这里是配置文件
+    封装读取配置文件的类
 '''
 from configparser import ConfigParser
 import os

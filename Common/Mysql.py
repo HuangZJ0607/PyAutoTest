@@ -2,6 +2,9 @@
 # @Author   :hzj
 # @File     :Mysql.py
 # @Time     :2020/6/11 15:38
+'''
+    封装连接mysql数据库的方法
+'''
 import pymysql
 from Config.config import Get_Config
 

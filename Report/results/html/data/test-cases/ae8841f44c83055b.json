@@ -1,0 +1,102 @@
+{
+  "uid" : "ae8841f44c83055b",
+  "name" : "test_tab_00001",
+  "fullName" : "Testcases.TestCase_UI_demo.Test_biTab#test_tab_00001",
+  "historyId" : "a34887f597b080f8480a5bfe28692b6f",
+  "time" : {
+    "start" : 1592986303994,
+    "stop" : 1592986306687,
+    "duration" : 2693
+  },
+  "description" : "test_tab_00001",
+  "descriptionHtml" : "<p>test_tab_00001</p>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "description" : "test_tab_00001",
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "533717f468da59ec",
+      "name" : "log",
+      "source" : "533717f468da59ec.txt",
+      "type" : "text/plain",
+      "size" : 439
+    } ],
+    "parameters" : [ ],
+    "hasContent" : true,
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "feature",
+    "value" : "B站导航栏的用例"
+  }, {
+    "name" : "parentSuite",
+    "value" : "Testcases"
+  }, {
+    "name" : "suite",
+    "value" : "TestCase_UI_demo"
+  }, {
+    "name" : "subSuite",
+    "value" : "Test_biTab"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-OF3E6D7"
+  }, {
+    "name" : "thread",
+    "value" : "4240-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "Testcases.TestCase_UI_demo"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "295ec9286d4f5275",
+      "status" : "passed",
+      "time" : {
+        "start" : 1592985658103,
+        "stop" : 1592985666365,
+        "duration" : 8262
+      }
+    }, {
+      "uid" : "2edf6935eeaac4cd",
+      "status" : "passed",
+      "time" : {
+        "start" : 1592985263546,
+        "stop" : 1592985266450,
+        "duration" : 2904
+      }
+    }, {
+      "uid" : "6d42e899529b95d3",
+      "status" : "passed",
+      "time" : {
+        "start" : 1592985133391,
+        "stop" : 1592985136436,
+        "duration" : 3045
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "ae8841f44c83055b.json",
+  "parameterValues" : [ ]
+}

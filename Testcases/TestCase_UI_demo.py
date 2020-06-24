@@ -8,10 +8,9 @@ sys.path.append(os.getcwd())
 from Common.Driver import Driver
 from ddt import ddt, file_data
 from Config.config import Get_Config
-import pytest
-from os.path import *
+import pytest, allure
 
-path = dirname(dirname(abspath(__file__)))
+path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 @ddt
@@ -23,6 +22,7 @@ class Test_biTab:
     def teardown(self) -> None:
         self.driver.quite()
 
+    @allure.feature('B站导航栏的用例')
     @file_data(path + '/DataFile/tab_content.yaml')
     def test_tab(self, **c):
         title = c.get('title')
@@ -30,8 +30,8 @@ class Test_biTab:
         value = c.get('value')
         self.driver.click(name, value)
         self.driver.sleep(2)
-        assert self.driver.title() == title
+        assert self.driver.title() == title, '实际的标签页标题与预期不一致'
 
 
 if __name__ == '__main__':
-    pytest.main(['-s', 'TestCase_UI_demo.py', '--html=../Report/pytest.html'])
+    pytest.main(['-s', 'TestCase_UI_demo.py', '--alluredir', '../Report/xml'])

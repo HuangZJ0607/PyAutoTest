@@ -2,20 +2,21 @@
 # @Author   :hzj
 # @File     :HTTPClient.py
 # @Time     :2020/6/11 15:34
+'''
+    封装发送http请求的类
+'''
 import requests
 from Common.Log import Log
 from Config.config import Get_Config
 from Common.Mysql import connect_mysql
 import json
-from Common.extract_yaml import read_yaml_extract
+from Common.Yaml_Operation import read_yaml_extract
 
 log = Log().logger
 
 
 class HTTPClient:
-    '''
-        封装发送http请求的类
-    '''
+
     index = 0
 
     def __init__(self):
@@ -37,43 +38,42 @@ class HTTPClient:
         self.headers = {
             'Content-Type': 'application/json'
         }
-
-    def get(self, data):
-        '''封装一个get请求的方法
-        :param data: 接口参数
-        :return: 返回接口的返回值
-        '''
-        try:
-            # 发起get请求
-            res = requests.get(url=self.url, params=data, headers=self.headers)
-            # return res.json()
-            return res.json()
-        except BaseException as error:
-            raise ('接口请求发生错误：', error)
-
-    def post(self, data, files):
-        '''封装post请求的方法
-        :param data: 接口参数
-        :return: 返回接口的返回值
-        '''
-        try:
-            # 发起post请求
-            res = requests.post(url=self.url, data=data, headers=self.headers, files=files)
-            return res.json()
-        except BaseException as error:
-            raise ('接口请求发生错误：', error)
-
-    def delete(self, data):
-        '''封装delete请求的方法
-        :param data: 接口参数
-        :return: 返回接口的返回值
-        '''
-        try:
-            # 发起delete请求
-            res = requests.delete(url=self.url, data=data, headers=self.headers)
-            return res.json()
-        except BaseException as error:
-            raise ('接口请求发生错误：', error)
+    # def get(self, data):
+    #     '''封装一个get请求的方法
+    #     :param data: 接口参数
+    #     :return: 返回接口的返回值
+    #     '''
+    #     try:
+    #         # 发起get请求
+    #         res = requests.get(url=self.url, params=data, headers=self.headers)
+    #         # return res.json()
+    #         return res.json()
+    #     except BaseException as error:
+    #         raise ('接口请求发生错误：', error)
+    #
+    # def post(self, data, files):
+    #     '''封装post请求的方法
+    #     :param data: 接口参数
+    #     :return: 返回接口的返回值
+    #     '''
+    #     try:
+    #         # 发起post请求
+    #         res = requests.post(url=self.url, data=data, headers=self.headers, files=files)
+    #         return res.json()
+    #     except BaseException as error:
+    #         raise ('接口请求发生错误：', error)
+    #
+    # def delete(self, data):
+    #     '''封装delete请求的方法
+    #     :param data: 接口参数
+    #     :return: 返回接口的返回值
+    #     '''
+    #     try:
+    #         # 发起delete请求
+    #         res = requests.delete(url=self.url, data=data, headers=self.headers)
+    #         return res.json()
+    #     except BaseException as error:
+    #         raise ('接口请求发生错误：', error)
 
     def send_request(self, method, name=None, data=None, headers=None, files=None):
         '''封装发送请求的方法
@@ -118,6 +118,7 @@ class HTTPClient:
         # else:
         #     raise ('接口请求类型错误，无法请求')
         try:
+            # python反射机制，这里相当于requests.method()，如requests.get()
             res = getattr(requests, method)(url=self.url, headers=self.headers, data=data, files=files)
             log.info(f'>>--开始测试用例<{HTTPClient.index}>，请求接口地址：{self.url}，请求方法：{method}，接口参数：{data}')
             log.info('接口响应值：{}'.format(res.json()))

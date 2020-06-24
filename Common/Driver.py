@@ -1,3 +1,6 @@
+'''
+    封装了WEBUI自动化的公用方法
+'''
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -61,7 +64,7 @@ class Driver:
         :param text: 往元素发送的值
         '''
         self.locator(name, value).send_keys(text)
-        log.info('对元素{0}输入{1}'.format((name, value), text))
+        log.info('对元素：{0}输入文本：{1}'.format((name, value), text))
 
     def click(self, name, value):
         '''
@@ -70,7 +73,7 @@ class Driver:
         :param value: 元素的属性值
         '''
         self.locator(name, value).click()
-        log.info('对元素{}进行点击操作'.format((name, value)))
+        log.info('对元素：{}进行点击操作'.format((name, value)))
 
     def text(self, name, value):
         '''
@@ -79,7 +82,7 @@ class Driver:
         :param value: 元素的属性值
         '''
         text = self.locator(name, value).text
-        log.info('元素{0}的文本内容为{1}'.format((name, value), text))
+        log.info('元素：{0}的文本内容为{1}'.format((name, value), text))
         return text
 
     # -------------------------标签页操作-------------------------
@@ -98,7 +101,7 @@ class Driver:
         '''
         handles = self.driver.window_handles
         self.driver.switch_to.window(handles[1])
-        log.info('切换到新窗体{}'.format(handles[1]))
+        log.info('切换到新窗体：{}'.format(handles[1]))
 
     def close(self):
         '''
@@ -112,7 +115,7 @@ class Driver:
         '''
         handles = self.driver.window_handles
         self.driver.switch_to.window(handles[0])
-        log.info('切换到新窗体{}'.format(handles[0]))
+        log.info('切换到新窗体：{}'.format(handles[0]))
 
     # -------------------------三种等待-------------------------
     def sleep(self, time):
@@ -137,9 +140,9 @@ class Driver:
         '''
         try:
             WebDriverWait(self.driver, 10, 0.5).until(lambda el: self.locator(name, value), message='没有该元素')
-            log.info('显式等待元素{}成功'.format((name, value)))
+            log.info('显式等待元素：{}成功'.format((name, value)))
         except Exception as error:
-            log.error('元素{0}等待失败：{1}'.format((name.value), error))
+            log.error('元素：{0}等待失败：{1}'.format((name.value), error))
             # raise ('元素{0}等待失败：{1}'.format((name.value), error))
 
     # -------------------------浏览器释放-------------------------

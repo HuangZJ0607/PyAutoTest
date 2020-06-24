@@ -2,6 +2,9 @@
 # @Author   :hzj
 # @File     :Email.py
 # @Time     :2020/6/9 19:31
+'''
+    封装测试报告邮件发送的类
+'''
 import smtplib, os
 from email.header import Header
 from email.mime.multipart import MIMEMultipart
@@ -19,9 +22,7 @@ fpath = os.path.dirname(os.path.abspath(path))
 
 
 class Email:
-    '''
-        把邮件发送的模块封装起来
-    '''
+
 
     # ---------------------获取邮件相关参数---------------------
     # 获取邮件发送的开关

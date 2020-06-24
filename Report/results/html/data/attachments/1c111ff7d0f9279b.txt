@@ -1,0 +1,2 @@
+INFO     Common.Log:HTTPClient.py:122 >>--开始测试用例<2>，请求接口地址：http://39.98.138.157:5000/api/demo，请求方法：get，接口参数：None
+INFO     Common.Log:HTTPClient.py:123 接口响应值：{'data': [{'from': 'cemaxueyuan', 'name': 'hello,yideng'}, {'from': 'cemaxueyuan', 'name': 'hello,xuzhu'}, {'from': 'cemaxueyuan', 'name': 'hello,susu'}], 'httpstatus': 200}
