@@ -9,7 +9,7 @@ UI自动化测试框架：selenium
 ##环境安装
 1.安装python版本3.x  
 2.安装IDE-pycharm、Chrome浏览器   
-3.github拉取本项目 `git clone https://github.com/HuangZJ0607/PyAutoTest.git`  
+3.git拉取本项目 `git clone https://github.com/HuangZJ0607/PyAutoTest.git`  
 4.安装相关依赖包 `pip install -r install.txt`   
 5.运行run.py运行测试用例  
 ##项目文件层级
