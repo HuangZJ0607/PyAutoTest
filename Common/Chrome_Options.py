@@ -14,7 +14,7 @@ class Options:
         options.add_argument('start-maximized')
 
         # 无头模式，启动浏览器进程，但不展示到前台
-        options.add_argument('--headless')
+        # options.add_argument('--headless')
 
         # 去掉开发者警告
         options.add_experimental_option('useAutomationExtension', False)

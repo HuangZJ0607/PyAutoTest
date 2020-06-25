@@ -12,6 +12,6 @@ from Common.Email import Email
 pytest.main(['-s', './Testcases', '--alluredir', './Report/xml'])
 '''
 # 生成xml后在命令行使用以下语句，生成HTML文件
-allure generate --clean ./Report/xml/ -o ./Report/results/html
+allure generate --clean ./Report/xml/ -o ./Report/html
 '''
 Email()

@@ -2,9 +2,10 @@
 # @Author   :hzj
 # @File     :TestCase_shop.py
 # @Time     :2020/6/23 16:22
-import pytest,allure
+import pytest, allure
 from Common.Driver import Driver
 from Config.config import Get_Config
+
 
 @allure.feature('电商_登录')
 @pytest.fixture()
@@ -21,7 +22,8 @@ def login():
     driver.click('xpath', '/html/body/div[4]/div/div[2]/div[2]/form/div[3]/button')
 
     driver.sleep(3)
-    return driver
+    yield driver
+    driver.quite()
 
 
 class Test_shop:
@@ -34,11 +36,10 @@ class Test_shop:
         login.click('xpath', '//input[@id="ai-topsearch"]')
         login.sleep(2)
         login.assert_title('手机 - ShopXO企业级B2C电商系统提供商 - 演示站点')
-        login.quite()
 
     # def test_car(self, login):
     #     print("2")
 
 
 if __name__ == '__main__':
-    pytest.main(['-s', 'TestCase_shop.py', '--html=../Report/pytest.html'])
+    pytest.main(['-s', 'TestCase_shop.py', '--alluredir', '../Report/xml'])
