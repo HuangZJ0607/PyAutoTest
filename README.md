@@ -1,20 +1,18 @@
 # 自研接口和UI一体化的自动化测试框架（持续更新中）
-##框架介绍  
+## 框架介绍  
 语言：python  
 UI自动化测试框架：selenium  
 接口测试框架：requests  
 用例组织框架：pytest  
 测试报告：allure / pytest-html  
 数据驱动：ddt  
-***
-##环境安装  
+## 环境安装  
 1.安装python版本3.x  
 2.安装IDE-pycharm、Chrome浏览器   
 3.git拉取本项目 `git clone https://github.com/HuangZJ0607/PyAutoTest.git`  
 4.安装相关依赖包 `pip install -r install.txt`   
 5.运行run.py运行测试用例 
-*** 
-##项目文件层级  
+## 项目文件层级  
 ./PyAutoTest  
 │──Common --->存放公用类  
 │   │  Chrome_Options.py   
@@ -41,6 +39,6 @@ UI自动化测试框架：selenium
 │  README.md  
 │  run.py --->核心文件，用于编译器执行测试  
 ***
-####Please wait for the next update!!!
+#### Please wait for the next update!!!
 
  
