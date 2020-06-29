@@ -36,7 +36,7 @@ class Driver:
     def __init__(self, browser):
         self.driver = open_browser(browser)
 
-    def visit(self, arg1, arg2, url):
+    def visit(self, url):
         '''
             访问指定URL
         :param url: 固定参数，要访问的url地址
@@ -44,7 +44,7 @@ class Driver:
         log.info('访问地址：{}'.format(url))
         self.driver.get(url)
 
-    def quite(self,*arg):
+    def quite(self):
         '''
             释放浏览器资源
         '''
@@ -76,7 +76,7 @@ class Driver:
         self.locator(name, value).send_keys(text)
         log.info('对元素：{0}输入文本：{1}'.format((name, value), text))
 
-    def click(self, name, value,arg):
+    def click(self, name, value):
         '''
             对某元素进行点击操作
         :param name: 元素的属性，如id、name、class、xpath...
@@ -186,14 +186,14 @@ class Driver:
         log.info('警告框关闭')
 
     # -------------------------三种等待-------------------------
-    def sleep(self, arg1, arg2, time):
+    def sleep(self, time):
         '''
             强制等待
         :param time: 强制等待的时间
         '''
         sleep(time)
 
-    def wait_y(self, arg1, arg2, time):
+    def wait_y(self, time):
         '''
             隐式等待
         :param time: 隐式等待的时间
@@ -201,7 +201,7 @@ class Driver:
         self.driver.implicitly_wait(time)
         log.info('隐式等待{}秒'.format(time))
 
-    def wait_x(self, name, value, arg):
+    def wait_x(self, name, value):
         '''
             显式等待，这里写死等待10秒，每0.5秒查询一次
         :param name: 元素的属性，如id、name、class、xpath...
@@ -252,7 +252,7 @@ class Driver:
             log.info('断言失败，流程出现异常！')
             return False
 
-    def assert_title(self, arg1, arg2, exp):
+    def assert_title(self, exp):
         '''
             对当前窗体的title进行断言
         :param exp: 预期结果
