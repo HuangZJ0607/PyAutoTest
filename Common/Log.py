@@ -8,6 +8,7 @@
 import logging, os
 from Config.config import Get_Config
 import time
+
 path = os.path.dirname(__file__)
 fpath = os.path.dirname(path)
 switch = Get_Config().get_config('logging', 'switch')
@@ -16,7 +17,6 @@ level = Get_Config().get_config('logging', 'level').upper()
 
 class Log:
 
-
     def __init__(self):
         self.logger = logging.getLogger(__name__)
         # logger 配置等级
@@ -24,7 +24,7 @@ class Log:
         # logger 输出格式
         self.formatter = logging.Formatter(
             fmt="[%(asctime)s][%(filename)s][%(levelname)s] %(message)s", datefmt="%Y/%m/%d %H:%M:%S")
-        #  这里进行判断，如果logger.handlers列表为空，则添加，否则，直接去写日志
+        #  这里进行判断，如果logger.handlers列表为空，则添加，否则，直接去写日志(通过这个判断避免日志打印重复)
         if not self.logger.handlers:
             self.consolelogging()
             # 判断是否打印日志到日志文件
@@ -54,5 +54,7 @@ class Log:
         # 添加文件处理器到日志器
         self.logger.addHandler(fh)
         fh.close()
+
+
 if __name__ == '__main__':
     Log().logger.info('123123')

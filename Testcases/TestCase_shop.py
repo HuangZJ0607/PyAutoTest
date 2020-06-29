@@ -35,7 +35,11 @@ class Test_shop:
 
         login.click('xpath', '//input[@id="ai-topsearch"]')
         login.sleep(2)
-        login.assert_title('手机 - ShopXO企业级B2C电商系统提供商 - 演示站点')
+        status = login.assert_title('手机 - ShopXO企业级B2C电商系统提供商 - 演示站点')
+        if status is True:
+            pass
+        elif status is False:
+            pass
 
     # def test_car(self, login):
     #     print("2")

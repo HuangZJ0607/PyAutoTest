@@ -5,7 +5,8 @@ UI自动化测试框架：selenium
 接口测试框架：requests  
 用例组织框架：pytest  
 测试报告：allure / pytest-html  
-数据驱动：ddt  
+数据驱动：ddt / excel 
+数据文件：yaml  
 ## 环境安装  
 1.安装python版本3.x  
 2.安装IDE-pycharm、Chrome浏览器   
