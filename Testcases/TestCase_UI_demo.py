@@ -8,21 +8,21 @@ sys.path.append(os.getcwd())
 from Common.Driver import Driver
 from ddt import ddt, file_data
 from Config.config import Get_Config
-import pytest, allure
+import unittest, time
+import HTMLTestRunner
 
 path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 @ddt
-class Test_biTab:
-    def setup(self) -> None:
+class Test_biTab(unittest.TestCase):
+    def setUp(self) -> None:
         self.driver = Driver('Chrome')
         self.driver.visit(Get_Config().get_config('url', 'bili_url'))
 
-    def teardown(self) -> None:
+    def tearDown(self) -> None:
         self.driver.quite()
 
-    @allure.feature('B站导航栏的用例')
     @file_data(path + '/DataFile/tab_content.yaml')
     def test_tab(self, **c):
         title = c.get('title')
@@ -30,8 +30,16 @@ class Test_biTab:
         value = c.get('value')
         self.driver.click(name, value)
         self.driver.sleep(2)
-        assert self.driver.title() == title, '实际的标签页标题与预期不一致'
+        self.assertEqual(self.driver.title(), title, msg='实际的标签页标题与预期不一致')
 
 
 if __name__ == '__main__':
-    pytest.main(['-s', 'TestCase_UI_demo.py', '--alluredir', '../Report/xml'])
+    # unittest.main()
+    s = unittest.TestSuite()
+    s.addTest(unittest.TestLoader().loadTestsFromTestCase(Test_biTab))
+    now = time.strftime('%Y_%m_%d_%H_%M_%S')
+    report_path = '../Report/'
+    filename = report_path + now + '.html'
+    with open(filename, 'wb') as report:
+        runner = HTMLTestRunner.HTMLTestRunner(stream=report, title='标题', description='内容')
+        runner.run(s)

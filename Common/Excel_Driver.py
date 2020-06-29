@@ -78,3 +78,7 @@ class ExcelDriver:
                             pass
                 else:
                     pass
+
+
+if __name__ == '__main__':
+    ExcelDriver('../DataFile/WEBUI_demo.xlsx')
