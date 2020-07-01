@@ -1,0 +1,146 @@
+{
+  "uid" : "2a7eaabd68991853",
+  "name" : "test_tab_00001",
+  "fullName" : "Testcases.TestCase_UI_demo.Test_biTab#test_tab_00001",
+  "historyId" : "a34887f597b080f8480a5bfe28692b6f",
+  "time" : {
+    "start" : 1593620307253,
+    "stop" : 1593620318719,
+    "duration" : 11466
+  },
+  "description" : "test_tab_00001",
+  "descriptionHtml" : "<p>test_tab_00001</p>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_UnitTestCase__pytest_class_setup",
+    "time" : {
+      "start" : 1593620307253,
+      "stop" : 1593620307253,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "testStage" : {
+    "description" : "test_tab_00001",
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "2c79ccebf069b413",
+      "name" : "log",
+      "source" : "2c79ccebf069b413.txt",
+      "type" : "text/plain",
+      "size" : 197
+    }, {
+      "uid" : "5ec11ac7c49d1463",
+      "name" : "stderr",
+      "source" : "5ec11ac7c49d1463.txt",
+      "type" : "text/plain",
+      "size" : 186
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : true,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ {
+    "name" : "_UnitTestCase__pytest_class_setup::0",
+    "time" : {
+      "start" : 1593620330298,
+      "stop" : 1593620330298,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "Testcases"
+  }, {
+    "name" : "suite",
+    "value" : "TestCase_UI_demo"
+  }, {
+    "name" : "subSuite",
+    "value" : "Test_biTab"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-OF3E6D7"
+  }, {
+    "name" : "thread",
+    "value" : "544-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "Testcases.TestCase_UI_demo"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "c682ce978b02f5a5",
+      "status" : "passed",
+      "time" : {
+        "start" : 1593619904818,
+        "stop" : 1593619916139,
+        "duration" : 11321
+      }
+    }, {
+      "uid" : "decf443b2c1b33ff",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.InvalidArgumentException: Message: invalid argument\n  (Session info: headless chrome=78.0.3904.70)",
+      "time" : {
+        "start" : 1593619472460,
+        "stop" : 1593619477440,
+        "duration" : 4980
+      }
+    }, {
+      "uid" : "6689e3bb0a2cac86",
+      "status" : "broken",
+      "statusDetails" : "TypeError: exceptions must derive from BaseException",
+      "time" : {
+        "start" : 1593618752634,
+        "stop" : 1593618757610,
+        "duration" : 4976
+      }
+    }, {
+      "uid" : "6f2e2ffe77600140",
+      "status" : "broken",
+      "statusDetails" : "TypeError: exceptions must derive from BaseException",
+      "time" : {
+        "start" : 1593618737050,
+        "stop" : 1593618742028,
+        "duration" : 4978
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "2a7eaabd68991853.json",
+  "parameterValues" : [ ]
+}

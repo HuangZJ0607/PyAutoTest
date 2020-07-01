@@ -18,7 +18,7 @@ path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 class Test_biTab(unittest.TestCase):
     def setUp(self) -> None:
         self.driver = Driver('Chrome')
-        self.driver.visit(Get_Config().get_config('url', 'bili_url'))
+        self.driver.visit('http://www.bilibili.com')
 
     def tearDown(self) -> None:
         self.driver.quite()

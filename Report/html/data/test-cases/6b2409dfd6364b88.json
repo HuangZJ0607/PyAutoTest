@@ -1,0 +1,73 @@
+{
+  "uid" : "6b2409dfd6364b88",
+  "name" : "test_interface_00002",
+  "fullName" : "Testcases.TestCase_API_demo.Test_API#test_interface_00002",
+  "historyId" : "9ffefb281eca27693d55627b34470185",
+  "time" : {
+    "start" : 1593618736948,
+    "stop" : 1593618737046,
+    "duration" : 98
+  },
+  "description" : "test_interface_00002",
+  "descriptionHtml" : "<p>test_interface_00002</p>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "description" : "test_interface_00002",
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "e72f5d864b2127ee",
+      "name" : "log",
+      "source" : "e72f5d864b2127ee.txt",
+      "type" : "text/plain",
+      "size" : 386
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : true,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "Testcases"
+  }, {
+    "name" : "suite",
+    "value" : "TestCase_API_demo"
+  }, {
+    "name" : "subSuite",
+    "value" : "Test_API"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-OF3E6D7"
+  }, {
+    "name" : "thread",
+    "value" : "1048-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "Testcases.TestCase_API_demo"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "6b2409dfd6364b88.json",
+  "parameterValues" : [ ]
+}

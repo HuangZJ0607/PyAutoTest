@@ -19,21 +19,19 @@ UI自动化测试框架：selenium
 │   │  Chrome_Options.py   
 │   │  Driver.py   
 │   │  Email.py   
-│   │  extract_yaml.py   
+│   │  Excel_Driver.py   
+│   │  Excel_Operation.py    
 │   │  HTTPClient.py   
 │   │  Log.py   
-│   └─Mysql.py          
+│   │  Mysql.py  
+│   └Yaml_Operation.py          
 │──Config --->存放配置文件及封装读取ini文件的方法  
 │   │  config.ini    
-│   └─config.py          
+│   └config.py          
 │──DataFile --->存放数据文件  
 │──Log --->存放日志文件  
 │──Report --->存放测试报告    
-│──Testcases --->存放测试用例    
-│   │  demo.py  
-│   │  TestCase_API_demo.py  
-│   │  TestCase_shop.py   
-│   └─TestCase_UI_demo.py  
+│──Testcases --->存放测试用例     
 │  .gitignore  
 │  install.txt --->记录所有需要安装模块的文件  
 │  pytest.ini --->pytest测试的配置文件，核心文件用于命令行执行测试  

@@ -1,0 +1,6 @@
+[2020/07/02 00:18:27][INFO] >>>-----接口测试用例<1>
+接口地址：http://39.98.138.157:5000/api/login
+请求方法：post
+接口参数：{"username": "admin", "password": "123456"}
+[2020/07/02 00:18:27][INFO] 接口响应值：{'adress': {'city': 'changsha'}, 'httpstatus': 200, 'info': {'age': 18, 'name': 'admin'}, 'msg': 'success', 'token': 'cemaxueyuan'}
+

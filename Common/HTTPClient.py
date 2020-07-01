@@ -120,11 +120,11 @@ class HTTPClient:
         try:
             # python反射机制，这里相当于requests.method()，如requests.get()
             res = getattr(requests, method)(url=self.url, headers=self.headers, data=data, files=files)
-            log.info(f'>>--开始测试用例<{HTTPClient.index}>，请求接口地址：{self.url}，请求方法：{method}，接口参数：{data}')
-            log.info('接口响应值：{}'.format(res.json()))
+            log.info(f'>>>-----接口测试用例<{HTTPClient.index}>\n接口地址：{self.url}\n请求方法：{method}\n接口参数：{data}')
+            log.info('接口响应值：{}\n'.format(res.json()))
             return res.json()
         except Exception as error:
-            log.info('接口请求异常:{}'.format(error))
+            log.info('接口请求异常：{}\n'.format(error))
         finally:
             self.init_url_headers()
 
@@ -164,4 +164,10 @@ class HTTPClient:
 
 
 if __name__ == '__main__':
-    res = HTTPClient().send_request(method='get', name='demo')
+    HTTPClient().send_request(method='get', name='demo')
+
+    para ={
+        "username": "admin",
+        "password": "123456"
+    }
+    HTTPClient().send_request(method='post',name='login',data=para)

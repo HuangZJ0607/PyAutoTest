@@ -22,11 +22,8 @@ fpath = os.path.dirname(os.path.abspath(path))
 
 
 class Email:
-
-
+    log.info('邮件发送准备中~')
     # ---------------------获取邮件相关参数---------------------
-    # 获取邮件发送的开关
-    switch = Get_Config().get_config('email', 'switch')
     # 发送人的邮箱地址
     sender = Get_Config().get_config('email', 'sender')
     # 接受人的邮箱地址
@@ -38,15 +35,7 @@ class Email:
     # 设置psw授权码
     password = Get_Config().get_config('email', 'psw')
 
-    def __init__(self):
-        if self.switch == '0':
-            log.info('邮件发送准备中~')
-            self.setemail()
-        elif self.switch == '1':
-            log.info('根据配置文件，邮件不发送！')
-            pass
-
-    def setemail(self):
+    def sendemail(self, filepath=None):
         # --------------------------发件相关参数--------------------------
         # 实例化MIMEMultipart对象
         self.message = MIMEMultipart()
@@ -65,8 +54,10 @@ class Email:
         email_text = now + ' 自动化测试报告，详见附件'
         # 设置邮件格式
         self.message.attach(MIMEText(email_text, _subtype='plain', _charset='utf-8'))
+        if filepath == None:
+            filepath = self.new_report()
         # 邮件添加附件
-        att = MIMEText(open(self.new_report(), 'rb').read(), 'base64', 'utf-8')
+        att = MIMEText(open(filepath, 'rb').read(), 'base64', 'utf-8')
         # 添加附件
         att['Content-Type'] = 'applicationt/octet-stram'
         att['Content-Disposition'] = 'attachment;filename="test_report.html"'
@@ -104,4 +95,4 @@ class Email:
 
 
 if __name__ == '__main__':
-    Email()
+    Email().sendemail('H:\PyAutoTest\Report\html\index.html')

@@ -63,7 +63,6 @@ class Driver:
             return self.driver.find_element(getattr(By, name.upper()), value)
         except Exception as error:
             log.error('元素定位发生错误：{}'.format(error))
-            # raise ('元素定位错误：{}'.format(error))
 
     # -------------------------元素操作-------------------------
     def input(self, name, value, text):
@@ -74,7 +73,7 @@ class Driver:
         :param text: 往元素发送的值
         '''
         self.locator(name, value).send_keys(text)
-        log.info('对元素：{0}输入文本：{1}'.format((name, value), text))
+        log.debug('对元素：{0}执行文本输入：{1}'.format((name, value), text))
 
     def click(self, name, value):
         '''
@@ -83,7 +82,7 @@ class Driver:
         :param value: 元素的属性值
         '''
         self.locator(name, value).click()
-        log.info('对元素：{}进行点击操作'.format((name, value)))
+        log.debug('对元素：{}执行点击操作'.format((name, value)))
 
     def text(self, name, value):
         '''
@@ -91,9 +90,7 @@ class Driver:
         :param name: 元素的属性，如id、name、class、xpath...
         :param value: 元素的属性值
         '''
-        text = self.locator(name, value).text
-        log.info('元素：{0}的文本内容为：{1}'.format((name, value), text))
-        return text
+        return self.locator(name, value).text
 
     # -------------------------标签页操作-------------------------
     def title(self):
@@ -101,9 +98,7 @@ class Driver:
             获取当前句柄的title
         :return: 当前句柄的title值
         '''
-        title = self.driver.title
-        log.info('当前标签页的标题是：{}'.format(title))
-        return title
+        return self.driver.title
 
     def switch_to_new_current(self):
         '''
@@ -111,7 +106,6 @@ class Driver:
         '''
         handles = self.driver.window_handles
         self.driver.switch_to.window(handles[1])
-        log.info('切换到新标签页：{}'.format(handles[1]))
 
     def close(self):
         '''
@@ -125,7 +119,6 @@ class Driver:
         '''
         handles = self.driver.window_handles
         self.driver.switch_to.window(handles[0])
-        log.info('切换到新标签页：{}'.format(handles[0]))
 
     # -------------------------frame表单处理-------------------------
     def frame_in(self, name, value):
@@ -135,7 +128,7 @@ class Driver:
         :param value: 元素的属性值
         '''
         self.driver.switch_to.frame(self.locator(name, value))
-        log.info('进入{}表单'.format((name, value)))
+        log.debug('进入{}表单'.format((name, value)))
 
     def frame_out(self):
         '''
@@ -143,7 +136,7 @@ class Driver:
         :return:
         '''
         self.driver.switch_to.default_content()
-        log.info('离开表单，回到最外层的页面')
+        log.debug('离开表单，回到最外层的页面')
 
     # -------------------------警告框处理-------------------------
     def alert(self):
@@ -152,9 +145,7 @@ class Driver:
         :return: 警告框元素
         '''
         try:
-            alert = self.driver.switch_to.alert
-            log.info('警告框获取成功')
-            return alert
+            return self.driver.switch_to.alert
         except Exception as error:
             log.error('警告框获取出现异常，错误提示：{}'.format(error))
 
@@ -164,26 +155,26 @@ class Driver:
         :return: 警告框提示信息
         '''
         text = self.alert().text
-        log.info('警告框的提示信息为：{}'.format(text))
+        log.debug('警告框的提示信息为：{}'.format(text))
         return text
 
     def alert_input(self, text):
         self.alert().send_keys(text)
-        log.info('向警告框输入文本{}'.format(text))
+        log.debug('向警告框输入文本{}'.format(text))
 
     def alert_accept(self):
         '''
             接受警告框
         '''
         self.alert().accept()
-        log.info('接受警告框')
+        log.debug('接受警告框')
 
     def alert_quit(self):
         '''
             关闭警告框
         '''
         self.alert().quit()
-        log.info('警告框关闭')
+        log.debug('警告框关闭')
 
     # -------------------------三种等待-------------------------
     def sleep(self, time):
@@ -191,6 +182,7 @@ class Driver:
             强制等待
         :param time: 强制等待的时间
         '''
+        log.debug('设置强制等待{}秒'.format(time))
         sleep(time)
 
     def wait_y(self, time):
@@ -199,7 +191,7 @@ class Driver:
         :param time: 隐式等待的时间
         '''
         self.driver.implicitly_wait(time)
-        log.info('隐式等待{}秒'.format(time))
+        log.debug('设置隐式等待{}秒'.format(time))
 
     def wait_x(self, name, value):
         '''
@@ -209,10 +201,10 @@ class Driver:
         '''
         try:
             WebDriverWait(self.driver, 10, 0.5).until(lambda el: self.locator(name, value), message='没有该元素')
-            # log.info('显式等待元素：{}成功'.format((name, value)))
-        except Exception as error:
-            log.error('元素：{0}等待失败：{1}'.format((name.value), error))
-            # raise ('元素{0}等待失败：{1}'.format((name.value), error))
+            return True
+        except:
+            log.error('元素：{0}等待失败'.format((name.value)))
+            return False
 
     # -------------------------调用JS-------------------------
     def js(self, js):
@@ -226,15 +218,11 @@ class Driver:
     def screenshot(self, file):
         try:
             self.driver.save_screenshot(file)
-            log.info('窗口截图成功，存放路径是：{}'.format(file))
+            log.debug('窗口截图成功，存放路径是：{}'.format(file))
         except Exception as error:
             log.error('截图出现异常，错误提示：{}'.format(error))
 
     # -------------------------断言-------------------------
-    '''
-        断言需要再研究研究，没有return结果
-    '''
-
     def assert_text(self, name, value, exp):
         '''
             对元素文本内容进行断言

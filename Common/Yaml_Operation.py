@@ -5,11 +5,10 @@
 '''
     封装读写yaml文件的方法
 '''
-import yaml
-import os
+import yaml, os
 
 path = os.path.dirname(os.path.abspath(__file__))
-fpath=os.path.dirname(path)
+fpath = os.path.dirname(path)
 yaml_path = fpath + './DataFile/extract.yaml'
 
 

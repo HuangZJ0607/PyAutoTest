@@ -1,0 +1,3 @@
+INFO     Common.Log:Driver.py:25 Chrome浏览器启动中...
+INFO     Common.Log:Driver.py:44 访问地址：http://www.bilibili.com
+INFO     Common.Log:Driver.py:51 关闭浏览器，释放资源~

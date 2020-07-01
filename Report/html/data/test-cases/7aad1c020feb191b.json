@@ -1,0 +1,106 @@
+{
+  "uid" : "7aad1c020feb191b",
+  "name" : "test_search",
+  "fullName" : "Testcases.TestCase_shop.Test_shop#test_search",
+  "historyId" : "cc054d820ff15f8c91ea506b1621998c",
+  "time" : {
+    "start" : 1593619945338,
+    "stop" : 1593619948218,
+    "duration" : 2880
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "login",
+    "time" : {
+      "start" : 1593619927806,
+      "stop" : 1593619945338,
+      "duration" : 17532
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "d06e6cc4884632d9",
+      "name" : "log",
+      "source" : "d06e6cc4884632d9.txt",
+      "type" : "text/plain",
+      "size" : 265
+    }, {
+      "uid" : "900325b97eca7a20",
+      "name" : "stderr",
+      "source" : "900325b97eca7a20.txt",
+      "type" : "text/plain",
+      "size" : 249
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : true,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ {
+    "name" : "login::0",
+    "time" : {
+      "start" : 1593619948218,
+      "stop" : 1593619950302,
+      "duration" : 2084
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "Testcases"
+  }, {
+    "name" : "suite",
+    "value" : "TestCase_shop"
+  }, {
+    "name" : "subSuite",
+    "value" : "Test_shop"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-OF3E6D7"
+  }, {
+    "name" : "thread",
+    "value" : "13724-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "Testcases.TestCase_shop"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "7aad1c020feb191b.json",
+  "parameterValues" : [ ]
+}

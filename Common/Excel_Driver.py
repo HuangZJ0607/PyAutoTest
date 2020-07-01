@@ -5,80 +5,78 @@
 '''
     封装excel文件驱动UI自动化测试的类
 '''
-import openpyxl
 from Common.Driver import Driver
-from openpyxl.styles import PatternFill, Font
 from Common.Log import Log
+from Common.Excel_Operation import ExcelOperator
 
 log = Log().logger
-
-
-def getexcel(filename):
-    # 读取excel文件
-    excel = openpyxl.load_workbook(filename)
-    log.info('读取{}文件'.format(filename))
-    return excel
 
 
 class ExcelDriver:
     index = 0
 
-    # 初始化函数
-    def __init__(self, filename):
-        self.excel = getexcel(filename)
-        self.excel_driver(filename)
-
-    def excel_driver(self, filename):
+    def excel_driver(self, filepath):
+        ec = ExcelOperator()
+        excel = ec.excel_read(filepath)
         # 获取所有的sheet页
-        sheetnames = self.excel.sheetnames
-
-        for sheetname in sheetnames:
-            sheet = self.excel[sheetname]
-            ExcelDriver.index += 1
-            log.info('执行第{0}个用例：{1}'.format(ExcelDriver.index, sheetname))
-
-            for value in sheet.values:
-                if type(value[0]) is int:  # 第一列的内容是int类型，即编号
-                    if value[1] == 'open_browser':
-                        # 实例化driver
-                        driver = Driver(value[4])
-                    elif 'assert' in value[1]:  # 第二列存在assert这个字符串时，进行判断传参
-                        if value[2] != None:
-                            status = getattr(driver, value[1])(value[2], value[3], value[6])
-                        else:
-                            status = getattr(driver, value[1])(value[6])
-                        # 获取断言结果，对结果进行判断
-                        if status is True:
-                            # 结果为True时写入pass
-                            # 获取当前行数
+        sheets = excel.sheetnames
+        try:
+            for i in sheets:
+                sheet = excel[i]
+                ExcelDriver.index += 1
+                log.info('执行UI测试第<{0}>个用例：{1}'.format(ExcelDriver.index, i))
+                for value in sheet.values:
+                    # 第一列的内容是int类型，即编号
+                    if type(value[0]) is int:
+                        log.info('执行关键字：{0}，操作描述：{1}'.format(value[1], value[5]))
+                        # 第二列中的open_browser流程，走特殊的方法实例化driver对象
+                        if value[1] == 'open_browser':
+                            # 实例化driver
+                            driver = Driver(value[4])
+                        # 第二列存在assert这个字符串时，代表断言，需要进行判断传参
+                        elif 'assert' in value[1]:
+                            # 获取方法的参数个数，把self也计算在内
+                            fuc = getattr(driver, value[1])
+                            num = fuc.__code__.co_argcount
+                            if num == 2:
+                                status = getattr(driver, value[1])(value[6])
+                            elif num == 4:
+                                status = getattr(driver, value[1])(value[2], value[3], value[6])
+                            else:
+                                # 断言方法匹配不失败，则断言结果为False，避免status为空
+                                status = False
+                            # 获取断言结果，对结果进行判断
                             row = value[0] + 1
-                            sheet.cell(row=row, column=8).value = 'Pass'
-                            # 填充颜色
-                            sheet.cell(row=row, column=8).fill = PatternFill('solid', fgColor='00FF00')
-                            # 字体加粗
-                            sheet.cell(row=row, column=8).font = Font(bold=True)
-                        else:
-                            # 结果为False时写入false
-                            row = value[0] + 1
-                            sheet.cell(row=row, column=8).value = 'False'
-                            sheet.cell(row=row, column=8).fill = PatternFill('solid', fgColor='FF0000')
-                            sheet.cell(row=row, column=8).font = Font(bold=True)
-                        # excel文件保存机制
-                        self.excel.save(filename)
-                    else:  # 除open_browser和断言外的其他流程，根据每列是否存在内容进行传参
-                        if value[4] == None and value[2] == None:
-                            getattr(driver, value[1])()
-                        elif value[4] == None and value[2] != None:
-                            getattr(driver, value[1])(value[2], value[3])
-                        elif value[4] != None and value[2] == None:
-                            getattr(driver, value[1])(value[4])
-                        elif value[4] != None and value[2] != None:
-                            getattr(driver, value[1])(value[2], value[3], value[4])
-                        else:
-                            pass
-                else:
-                    pass
+                            if status is True:
+                                ec.cell_set(sheet, row, 'pass')
+                            else:
+                                ec.cell_set(sheet, row, 'false')
+                            # excel文件保存机制
+                            ec.excel_save(excel, filepath)
+                        else:  # 除open_browser和断言外的其他流程，根据每列是否存在内容进行传参
+                            # 获取方法的参数个数，把self也计算在内
+                            fuc = getattr(driver, value[1])
+                            num = fuc.__code__.co_argcount
+                            if num == 1:
+                                getattr(driver, value[1])()
+                            elif num == 2:
+                                getattr(driver, value[1])(value[4])
+                            elif num == 3:
+                                getattr(driver, value[1])(value[2], value[3])
+                            elif num == 4:
+                                getattr(driver, value[1])(value[2], value[3], value[4])
+                            else:
+                                log.error('方法配对失败！')
+
+                    else:
+                        pass
+        except Exception as error:
+            log.error('运行出现异常，异常信息描述为{}'.format(error))
+        finally:
+            # 不论执行清空如何，都要关闭文件
+            log.info('文件读取完毕，自动化执行结束！\n')
+            ec.excel_close(excel)
 
 
 if __name__ == '__main__':
-    ExcelDriver('../DataFile/WEBUI_demo.xlsx')
+    ExcelDriver().excel_driver('../DataFile/WEBUI_demo.xlsx')

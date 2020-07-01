@@ -22,8 +22,9 @@ class Log:
         # logger 配置等级
         self.logger.setLevel(level)
         # logger 输出格式
-        self.formatter = logging.Formatter(
-            fmt="[%(asctime)s][%(filename)s][%(levelname)s] %(message)s", datefmt="%Y/%m/%d %H:%M:%S")
+        # fmt = "[%(asctime)s][%(filename)s][%(levelname)s] %(message)s"
+        fmt = "[%(asctime)s][%(levelname)s] %(message)s"
+        self.formatter = logging.Formatter(fmt=fmt, datefmt="%Y/%m/%d %H:%M:%S")
         #  这里进行判断，如果logger.handlers列表为空，则添加，否则，直接去写日志(通过这个判断避免日志打印重复)
         if not self.logger.handlers:
             self.consolelogging()
