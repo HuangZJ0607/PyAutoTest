@@ -1,0 +1,109 @@
+{
+  "uid" : "56a7621b4b9e7116",
+  "name" : "test_tab_00001",
+  "fullName" : "Testcases.TestCase_UI_demo.Test_biTab#test_tab_00001",
+  "historyId" : "a34887f597b080f8480a5bfe28692b6f",
+  "time" : {
+    "start" : 1593619904818,
+    "stop" : 1593619916139,
+    "duration" : 11321
+  },
+  "description" : "test_tab_00001",
+  "descriptionHtml" : "<p>test_tab_00001</p>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_UnitTestCase__pytest_class_setup",
+    "time" : {
+      "start" : 1593619904817,
+      "stop" : 1593619904817,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "test_tab_00001",
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "8e66c3d4602ebecf",
+      "name" : "log",
+      "source" : "8e66c3d4602ebecf.txt",
+      "type" : "text/plain",
+      "size" : 197
+    }, {
+      "uid" : "4b658663549bcdb5",
+      "name" : "stderr",
+      "source" : "4b658663549bcdb5.txt",
+      "type" : "text/plain",
+      "size" : 186
+    } ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 2,
+    "stepsCount" : 0,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "_UnitTestCase__pytest_class_setup::0",
+    "time" : {
+      "start" : 1593619927791,
+      "stop" : 1593619927791,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "Testcases"
+  }, {
+    "name" : "suite",
+    "value" : "TestCase_UI_demo"
+  }, {
+    "name" : "subSuite",
+    "value" : "Test_biTab"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-OF3E6D7"
+  }, {
+    "name" : "thread",
+    "value" : "13724-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "Testcases.TestCase_UI_demo"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "56a7621b4b9e7116.json",
+  "parameterValues" : [ ]
+}

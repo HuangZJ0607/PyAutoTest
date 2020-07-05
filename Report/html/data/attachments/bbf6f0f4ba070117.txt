@@ -1,0 +1,4 @@
+INFO     Common.Log:Driver.py:25 Chrome浏览器启动中...
+INFO     Common.Log:Driver.py:44 访问地址：http://39.98.138.157/shopxo/
+INFO     Common.Log:Driver.py:252 断言成功，流程正确~
+INFO     Common.Log:Driver.py:51 关闭浏览器，释放资源~

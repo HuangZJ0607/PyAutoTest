@@ -1,0 +1,117 @@
+{
+  "9ffefb281eca27693d55627b34470185" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "d56571faab943145",
+      "status" : "passed",
+      "time" : {
+        "start" : 1593620307138,
+        "stop" : 1593620307239,
+        "duration" : 101
+      }
+    } ]
+  },
+  "ba6826dc7446e88c642fbb0f28febf5a" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "81f8730c7f6aeeb1",
+      "status" : "passed",
+      "time" : {
+        "start" : 1593620318724,
+        "stop" : 1593620330297,
+        "duration" : 11573
+      }
+    } ]
+  },
+  "cc054d820ff15f8c91ea506b1621998c" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "7697a4c8bf73036",
+      "status" : "passed",
+      "time" : {
+        "start" : 1593620348011,
+        "stop" : 1593620351036,
+        "duration" : 3025
+      }
+    } ]
+  },
+  "a34887f597b080f8480a5bfe28692b6f" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "88bd9edeac5fc7c3",
+      "status" : "passed",
+      "time" : {
+        "start" : 1593620307253,
+        "stop" : 1593620318719,
+        "duration" : 11466
+      }
+    } ]
+  },
+  "90cb7e2ee6840bb042ecd951b5d60785" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "d9473d03c8524989",
+      "status" : "broken",
+      "statusDetails" : "FileNotFoundError: [Errno 2] No such file or directory: '../DataFile/WEBUI_demo.xlsx'",
+      "time" : {
+        "start" : 1593618766779,
+        "stop" : 1593618766779,
+        "duration" : 0
+      }
+    } ]
+  },
+  "60c656b17b58ceb9209ed4597144aee8" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "dd9d42e86cbf6989",
+      "status" : "passed",
+      "time" : {
+        "start" : 1593620307038,
+        "stop" : 1593620307133,
+        "duration" : 95
+      }
+    } ]
+  }
+}
