@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # @Author   :hzj
-# @File     :TestCase_shop.py
+# @File     :Testcase_shop.py
 # @Time     :2020/6/23 16:22
 import pytest, allure, os
 from Common.Driver import Driver
@@ -40,6 +40,6 @@ class Test_shop:
 
 
 if __name__ == '__main__':
-    pytest.main(['-s', 'TestCase_shop.py', '--alluredir', '../Report/xml'])
+    pytest.main(['-s', 'Testcase_shop.py', '--alluredir', '../Report/xml'])
     os.system('allure generate --clean ../Report/xml/ -o ../Report/html')
-    # pytest.main(['-s', 'TestCase_shop.py'])
+    # pytest.main(['-s', 'Testcase_shop.py'])

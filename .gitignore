@@ -1,3 +1,5 @@
 Config/config.ini
 *.html
 log_*.txt
+Report/html
+Report/xml

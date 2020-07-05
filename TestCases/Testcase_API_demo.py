@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # @Author   :hzj
-# @File     :TestCase_API_demo.py
+# @File     :Testcase_API_demo.py
 # @Time     :2020/6/11 14:50
 import os, sys
 
@@ -34,4 +34,4 @@ class Test_API:
 
 
 if __name__ == '__main__':
-    pytest.main(['-s', 'TestCase_API_demo.py', '--html=../Report/pytest.html'])
+    pytest.main(['-s', 'Testcase_API_demo.py', '--html=../Report/pytest.html'])

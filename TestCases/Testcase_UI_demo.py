@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # @Author   :hzj
-# @File     :TestCase_UI_demo.py
+# @File     :Testcase_UI_demo.py
 # @Time     :2020/5/25 10:16
 import os, sys
 

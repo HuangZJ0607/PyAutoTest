@@ -1,5 +1,0 @@
-INFO     Common.Log:HTTPClient.py:123 >>>-----接口测试用例<3>
-接口地址：http://39.98.138.157:5000/api/login
-请求方法：post
-接口参数：{"username": "admin", "password": "123456"}
-INFO     Common.Log:HTTPClient.py:124 接口响应值：{'adress': {'city': 'changsha'}, 'httpstatus': 200, 'info': {'age': 18, 'name': 'admin'}, 'msg': 'success', 'token': 'cemaxueyuan'}
