@@ -1,5 +1,5 @@
 pytest
-ptytest-xdist
+pytest-xdist
 pytest-rerunfailures
 pytest-html
 requests

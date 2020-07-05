@@ -3,7 +3,6 @@
 # @File     :run.py.py
 # @Time     :2020/6/18 12:51
 import pytest, sys, os
-from Common.Email import Email
 
 '''
 # 使用pytest自带的测试报告生成方法
@@ -16,12 +15,8 @@ from Common.Email import Email
 allure generate --clean ./Report/xml/ -o ./Report/html
 '''
 
-
-def main():
-    args = ['--alluredir={}'.format('./Report/xml/')]
+if __name__ == '__main__':
+    args = ['-s', '--alluredir', './Report/xml']
     pytest.main(args)
     os.system('allure generate --clean ./Report/xml/ -o ./Report/html')
-
-
-if __name__ == '__main__':
-    main()
+    # os.system('start chrome.exe E:/PyAutoTest/Report/html/index.html')

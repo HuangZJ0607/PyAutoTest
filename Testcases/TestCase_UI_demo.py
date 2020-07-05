@@ -9,7 +9,7 @@ from Common.Driver import Driver
 from ddt import ddt, file_data
 from Config.config import Get_Config
 import unittest, time
-import HTMLTestRunner
+# import HTMLTestRunner
 
 path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -33,13 +33,13 @@ class Test_biTab(unittest.TestCase):
         self.assertEqual(self.driver.title(), title, msg='实际的标签页标题与预期不一致')
 
 
-if __name__ == '__main__':
-    # unittest.main()
-    s = unittest.TestSuite()
-    s.addTest(unittest.TestLoader().loadTestsFromTestCase(Test_biTab))
-    now = time.strftime('%Y_%m_%d_%H_%M_%S')
-    report_path = '../Report/'
-    filename = report_path + now + '.html'
-    with open(filename, 'wb') as report:
-        runner = HTMLTestRunner.HTMLTestRunner(stream=report, title='标题', description='内容')
-        runner.run(s)
+# if __name__ == '__main__':
+#     # unittest.main()
+#     s = unittest.TestSuite()
+#     s.addTest(unittest.TestLoader().loadTestsFromTestCase(Test_biTab))
+#     now = time.strftime('%Y_%m_%d_%H_%M_%S')
+#     report_path = '../Report/'
+#     filename = report_path + now + '.html'
+#     with open(filename, 'wb') as report:
+#         runner = HTMLTestRunner.HTMLTestRunner(stream=report, title='标题', description='内容')
+#         runner.run(s)

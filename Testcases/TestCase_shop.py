@@ -2,7 +2,7 @@
 # @Author   :hzj
 # @File     :TestCase_shop.py
 # @Time     :2020/6/23 16:22
-import pytest, allure
+import pytest, allure, os
 from Common.Driver import Driver
 from Config.config import Get_Config
 
@@ -40,5 +40,6 @@ class Test_shop:
 
 
 if __name__ == '__main__':
-    # pytest.main(['-s', 'TestCase_shop.py', '--alluredir', '../Report/xml'])
-    pytest.main(['-s', 'TestCase_shop.py'])
+    pytest.main(['-s', 'TestCase_shop.py', '--alluredir', '../Report/xml'])
+    os.system('allure generate --clean ../Report/xml/ -o ../Report/html')
+    # pytest.main(['-s', 'TestCase_shop.py'])

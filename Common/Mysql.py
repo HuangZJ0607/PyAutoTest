@@ -17,10 +17,10 @@ database = Get_Config().get_config('mysql', 'database')
 
 
 def connect_mysql(sql):
-    con = pymysql.connect(host=host, port=port, user=user, password=password, charset='utf8', database=database)
-    cursor = con.cursor()
-    cursor.execute(sql)
-    res = cursor.fetchall()
+    # con = pymysql.connect(host=host, port=port, user=user, password=password, charset='utf8', database=database)
+    # cursor = con.cursor()
+    # cursor.execute(sql)
+    # res = cursor.fetchall()
     # return res
     return 200
 
