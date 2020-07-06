@@ -5,14 +5,14 @@
 '''
     封装logging日志模块的类
 '''
-import logging, os
-from Config.config import Get_Config
-import time
+import logging, os,time
+from Conf.Config import Config
 
 path = os.path.dirname(__file__)
 fpath = os.path.dirname(path)
-switch = Get_Config().get_config('logging', 'switch')
-level = Get_Config().get_config('logging', 'level').upper()
+
+switch = Config().get('logging', 'switch')
+level = Config().get('logging', 'level').upper()
 
 
 class Log:
@@ -20,7 +20,7 @@ class Log:
     def __init__(self):
         self.logger = logging.getLogger(__name__)
         # logger 配置等级
-        self.logger.setLevel(level)
+        self.logger.setLevel(level.upper())
         # logger 输出格式
         # fmt = "[%(asctime)s][%(filename)s][%(levelname)s] %(message)s"
         fmt = "[%(asctime)s][%(levelname)s] %(message)s"

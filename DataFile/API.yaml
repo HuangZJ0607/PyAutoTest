@@ -1,4 +1,5 @@
-- case_name: demo
+-
+  case_name: demo
   request:
     interface_name: login # 接口后缀
     method: post # 接口请求方法
@@ -10,7 +11,8 @@
     httpstatus: 200
     age: 18
     ciyt: changsha
-- case_name: demo2
+-
+  case_name: demo2
   request:
     interface_name: demo # 接口后缀
     method: get # 接口请求方法

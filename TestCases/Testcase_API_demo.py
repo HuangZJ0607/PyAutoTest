@@ -1,14 +1,15 @@
-# -*- coding: utf-8 -*-
-# @Author   :hzj
-# @File     :Testcase_API_demo.py
-# @Time     :2020/6/11 14:50
+'''
+    基于关键字驱动，pytest + allure的接口自动化测试用例的demo
+'''
 import os, sys
 
 sys.path.append(os.getcwd())
 from Common.HTTPClient import HTTPClient
 from ddt import ddt, data, file_data
 from Common.Yaml_Operation import write_yaml
+from Common.ExecuteResult import RESULT_LIST
 import pytest
+from Common.Email import Email
 
 path = os.path.dirname(__file__)
 fpath = os.path.dirname(path)
@@ -30,8 +31,13 @@ class Test_API:
                 extract = {}
                 extract[key] = res[value]
                 write_yaml(extract)
-        self.r.vaildate(data['validate'], res)
-
+        status = self.r.vaildate(data['validate'], res)
+        try:
+            assert status == True
+            RESULT_LIST.append('True')
+        except:
+            RESULT_LIST.append('False')
 
 if __name__ == '__main__':
     pytest.main(['-s', 'Testcase_API_demo.py', '--html=../Report/pytest.html'])
+    Email().sendemail('../Report/pytest.html')

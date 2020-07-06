@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-# @Author   :hzj
-# @File     :Chrome_Options.py
-# @Time     :2020/6/24 2:20
+'''
+    Chrome浏览器的配置文件
+'''
 from selenium import webdriver
 
 

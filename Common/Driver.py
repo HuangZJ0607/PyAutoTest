@@ -1,5 +1,5 @@
 '''
-    封装了WEBUI自动化的公用方法
+    封装WEBUI自动化的公用方法
 '''
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -7,6 +7,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from Common.Chrome_Options import Options
 from Common.Log import Log
 from time import sleep
+from Common.ExecuteResult import RESULT_LIST
 
 log = Log().logger
 
@@ -235,9 +236,11 @@ class Driver:
         try:
             assert reality == exp
             log.info('断言成功，流程正确~')
+            RESULT_LIST.append('True')
             return True
         except:
             log.info('断言失败，流程出现异常！')
+            RESULT_LIST.append('False')
             return False
 
     def assert_title(self, exp):
@@ -250,7 +253,9 @@ class Driver:
         try:
             assert reality == exp
             log.info('断言成功，流程正确~')
+            RESULT_LIST.append('True')
             return True
         except:
             log.info('断言失败，流程出现异常！')
+            RESULT_LIST.append('False')
             return False

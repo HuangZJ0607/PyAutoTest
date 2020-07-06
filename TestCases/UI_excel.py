@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-# @Author   :hzj
-# @File     :Testcase_UI_excel.py
-# @Time     :2020/6/24 1:27
+'''
+    基于关键字驱动，excel文件的数据驱动demo
+'''
 from Common.Excel_Driver import ExcelDriver
-
+from Common.Email import Email
 
 class excel:
     def excel(self):
@@ -12,3 +11,4 @@ class excel:
 
 if __name__ == '__main__':
     excel().excel()
+    Email().sendemail()

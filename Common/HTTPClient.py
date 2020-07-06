@@ -7,16 +7,16 @@
 '''
 import requests
 from Common.Log import Log
-from Config.config import Get_Config
+from Conf.Config import Config
 from Common.Mysql import connect_mysql
 import json
 from Common.Yaml_Operation import read_yaml_extract
+from Common.ExecuteResult import RESULT_LIST
 
 log = Log().logger
 
 
 class HTTPClient:
-
     index = 0
 
     def __init__(self):
@@ -34,10 +34,11 @@ class HTTPClient:
         '''
             初始化url和headers
         '''
-        self.url = Get_Config().get_config('url', 'api_url')
+        self.url = Config().get('url', 'api_url')
         self.headers = {
             'Content-Type': 'application/json'
         }
+
     # def get(self, data):
     #     '''封装一个get请求的方法
     #     :param data: 接口参数
@@ -104,27 +105,14 @@ class HTTPClient:
         # 后缀不一定相同，但是前缀是一样的，拼接每次的请求的url
         self.url = self.url + name
 
-        # # 请求类型转成小写
-        method = method.lower()
-
-        # res = ''
-        # # 判断请求类型
-        # if method == 'get':
-        #     res = self.get(data)
-        # elif method == 'post':
-        #     res = self.post(data, files)
-        # elif method == 'delete':
-        #     res = self.delete(data)
-        # else:
-        #     raise ('接口请求类型错误，无法请求')
         try:
             # python反射机制，这里相当于requests.method()，如requests.get()
-            res = getattr(requests, method)(url=self.url, headers=self.headers, data=data, files=files)
+            res = getattr(requests, method.lower())(url=self.url, headers=self.headers, data=data, files=files)
             log.info(f'>>>-----接口测试用例<{HTTPClient.index}>\n接口地址：{self.url}\n请求方法：{method}\n接口参数：{data}')
             log.info('接口响应值：{}\n'.format(res.json()))
             return res.json()
         except Exception as error:
-            log.info('接口请求异常：{}\n'.format(error))
+            log.error('接口请求异常：{}\n'.format(error))
         finally:
             self.init_url_headers()
 
@@ -146,13 +134,21 @@ class HTTPClient:
                         # 从数据库中读取value
                         value_after = self.get_mysql_data(value)
                         # 预期结果与实际结果进行比较
-                        assert value_after == actual[key]
+                        try:
+                            assert value_after == actual[key]
+                            return True
+                        except:
+                            return False
                     else:
                         # 除sql语句外的string类型的预期结果与实际结果进行比较
                         assert value == actual[key]
                 # 当预期结果的value是int类型时，由于int类型没有'startswith'方法，所以另写一个判断
                 elif isinstance(value, int):
-                    assert value == actual[key]
+                    try:
+                        assert value == actual[key]
+                        return True
+                    except:
+                        return False
             # 预期的key不在实际结果返回值的key里面
             else:
                 for _key, _value in actual.items():
@@ -166,8 +162,9 @@ class HTTPClient:
 if __name__ == '__main__':
     HTTPClient().send_request(method='get', name='demo')
 
-    para ={
+    para = {
         "username": "admin",
         "password": "123456"
     }
-    HTTPClient().send_request(method='post',name='login',data=para)
+    HTTPClient().send_request(method='post', name='login', data=para)
+    print(RESULT_LIST)

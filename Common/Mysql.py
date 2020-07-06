@@ -6,14 +6,14 @@
     封装连接mysql数据库的方法
 '''
 import pymysql
-from Config.config import Get_Config
+from Conf.Config import Config
 
 # 获取数据库的地址host(string类型)、端口port(number类型)、用户名user(string类型)、密码password(string类型)
-host = Get_Config().get_config('mysql', 'host')
-port = int(Get_Config().get_config('mysql', 'port'))
-user = Get_Config().get_config('mysql', 'user')
-password = Get_Config().get_config('mysql', 'password')
-database = Get_Config().get_config('mysql', 'database')
+host = Config().get('mysql', 'host')
+port = int(Config().get('mysql', 'port'))
+user = Config().get('mysql', 'user')
+password = Config().get('mysql', 'password')
+database = Config().get('mysql', 'database')
 
 
 def connect_mysql(sql):

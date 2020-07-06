@@ -1,4 +1,4 @@
-Config/config.ini
+Conf/config.ini
 *.html
 log_*.txt
 Report/html
