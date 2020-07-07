@@ -1,9 +1,5 @@
-# -*- coding: utf-8 -*-
-# @Author   :hzj
-# @File     :Email.py
-# @Time     :2020/6/9 19:31
 '''
-    封装测试报告邮件发送的类
+    封装邮件发送的类
 '''
 import smtplib, os
 from email.header import Header
@@ -47,7 +43,6 @@ class Email:
         self.message['To'] = Header('测试报告管理邮箱', 'utf-8')
         # 设置邮件的标题
         self.message['Subject'] = Header('自动化测试报告', 'utf-8')
-
         # --------------------------编辑邮件附件内容--------------------------
         t = '自动化测试已完成'
         # filepath参数非空，即要添加附件
@@ -69,7 +64,6 @@ class Email:
         '''
         # 设置邮件格式
         self.message.attach(MIMEText(email_text, _subtype='plain', _charset='utf-8'))
-
         # --------------------------发送邮件--------------------------
         try:
             smtpobj = smtplib.SMTP()
@@ -83,22 +77,22 @@ class Email:
         except Exception as error:
             log.error(f'邮件发送出现异常\n{error}')
 
-    def new_report(self):
-        '''
-            获取Report文件夹下最新的测试报告
-        '''
-        try:
-            # 列出目录下所有文件和文件夹保存到lists里面
-            test_report = fpath + '/Report/'
-            lists = os.listdir(test_report)
-            # lists里的文件按照时间排序
-            lists.sort(key=lambda fn: os.path.getmtime(test_report + fn))
-
-            # 获取最新的文件保存到new_file
-            new_file = os.path.join(test_report, lists[-1])
-            return new_file
-        except Exception as e:
-            raise ('邮件发送发生未知错误', e)
+    # def new_report(self):
+    #     '''
+    #         获取Report文件夹下最新的测试报告
+    #     '''
+    #     try:
+    #         # 列出目录下所有文件和文件夹保存到lists里面
+    #         test_report = fpath + '/Report/'
+    #         lists = os.listdir(test_report)
+    #         # lists里的文件按照时间排序
+    #         lists.sort(key=lambda fn: os.path.getmtime(test_report + fn))
+    #
+    #         # 获取最新的文件保存到new_file
+    #         new_file = os.path.join(test_report, lists[-1])
+    #         return new_file
+    #     except Exception as e:
+    #         raise ('邮件发送发生未知错误', e)
 
 
 if __name__ == '__main__':

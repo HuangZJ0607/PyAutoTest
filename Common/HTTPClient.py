@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-# @Author   :hzj
-# @File     :HTTPClient.py
-# @Time     :2020/6/11 15:34
 '''
     封装发送http请求的类
 '''
@@ -27,8 +23,7 @@ class HTTPClient:
         self.init_url_headers()
 
     def get_mysql_data(self, sql):
-        sql = connect_mysql(sql)
-        return sql
+        return connect_mysql(sql)
 
     def init_url_headers(self):
         '''
@@ -38,47 +33,12 @@ class HTTPClient:
         self.headers = {
             'Content-Type': 'application/json'
         }
+        self.re_list = []
 
-    # def get(self, data):
-    #     '''封装一个get请求的方法
-    #     :param data: 接口参数
-    #     :return: 返回接口的返回值
-    #     '''
-    #     try:
-    #         # 发起get请求
-    #         res = requests.get(url=self.url, params=data, headers=self.headers)
-    #         # return res.json()
-    #         return res.json()
-    #     except BaseException as error:
-    #         raise ('接口请求发生错误：', error)
-    #
-    # def post(self, data, files):
-    #     '''封装post请求的方法
-    #     :param data: 接口参数
-    #     :return: 返回接口的返回值
-    #     '''
-    #     try:
-    #         # 发起post请求
-    #         res = requests.post(url=self.url, data=data, headers=self.headers, files=files)
-    #         return res.json()
-    #     except BaseException as error:
-    #         raise ('接口请求发生错误：', error)
-    #
-    # def delete(self, data):
-    #     '''封装delete请求的方法
-    #     :param data: 接口参数
-    #     :return: 返回接口的返回值
-    #     '''
-    #     try:
-    #         # 发起delete请求
-    #         res = requests.delete(url=self.url, data=data, headers=self.headers)
-    #         return res.json()
-    #     except BaseException as error:
-    #         raise ('接口请求发生错误：', error)
-
-    def send_request(self, method, name=None, data=None, headers=None, files=None):
+    def send_request(self, method, url=None, name=None, data=None, headers=None, files=None):
         '''封装发送请求的方法
         :param method: 请求的方式，分为get、post、delete等
+        :param url: 接口地址
         :param name: 接口地址的后缀
         :param data: 接口参数
         :param headers: 接口请求头
@@ -102,9 +62,11 @@ class HTTPClient:
             if isinstance(data, dict):
                 data = json.dumps(data)
 
-        # 后缀不一定相同，但是前缀是一样的，拼接每次的请求的url
-        self.url = self.url + name
-
+        if url == None:
+            # 后缀不一定相同，但是前缀是一样的，拼接每次的请求的url
+            self.url = self.url + name
+        else:
+            self.url = url
         try:
             # python反射机制，这里相当于requests.method()，如requests.get()
             res = getattr(requests, method.lower())(url=self.url, headers=self.headers, data=data, files=files)
@@ -123,48 +85,48 @@ class HTTPClient:
         :param actual: 实际结果
         :return:
         '''
+
         for key, value in expect.items():
+
             # 预期的key在实际结果返回值的key里面
             if key in actual:
-                # 当预期结果的value是字符串类型时
+                # 将sql语句转换成数据库数据。如select * from token where id = 1 这个格式判断为一个数据库语句 select, update....
                 if isinstance(value, str):
-                    # 将sql语句转换成数据库数据。如select * from token where id = 1 这个格式判断为一个数据库语句 select, update....
                     if value.startswith('select') and 'from' in value or (
                             value.startswith('update') and 'set' in value):
                         # 从数据库中读取value
-                        value_after = self.get_mysql_data(value)
-                        # 预期结果与实际结果进行比较
-                        try:
-                            assert value_after == actual[key]
-                            return True
-                        except:
-                            return False
-                    else:
-                        # 除sql语句外的string类型的预期结果与实际结果进行比较
-                        assert value == actual[key]
-                # 当预期结果的value是int类型时，由于int类型没有'startswith'方法，所以另写一个判断
-                elif isinstance(value, int):
-                    try:
-                        assert value == actual[key]
-                        return True
-                    except:
-                        return False
-            # 预期的key不在实际结果返回值的key里面
+                        value = self.get_mysql_data(value)
+                # 预期结果与实际结果进行比较
+                try:
+                    assert value == actual[key]
+                    self.re_list.append('True')
+                except AssertionError:
+                    log.info(f'接口返回值与预期不相等-->[验证结果中的key是：{key}][预期结果是：{value}][实际结果是：{actual[key]}]')
+                    self.re_list.append('False')
             else:
                 for _key, _value in actual.items():
                     if isinstance(_value, dict) and (key in _value):
                         expect_new = {}
                         expect_new[key] = value
-                        # 递归，重新走判断逻辑
                         self.vaildate(expect_new, _value)
+                        # 递归，重新走判断逻辑
+                    elif isinstance(_value, list):
+                        for i in _value:
+                            if key in i:
+                                expect_new = {}
+                                expect_new[key] = value
+                                self.vaildate(expect_new, i)
+        if self.re_list.count('False') > 0:
+            return False
+        else:
+            return True
 
-
-if __name__ == '__main__':
-    HTTPClient().send_request(method='get', name='demo')
-
-    para = {
-        "username": "admin",
-        "password": "123456"
-    }
-    HTTPClient().send_request(method='post', name='login', data=para)
-    print(RESULT_LIST)
+# if __name__ == '__main__':
+#     HTTPClient().send_request(method='get', name='demo')
+#
+#     para = {
+#         "username": "admin",
+#         "password": "123456"
+#     }
+#     HTTPClient().send_request(method='post', name='login', data=para)
+#     log.info('RESULT_LIST：', RESULT_LIST)

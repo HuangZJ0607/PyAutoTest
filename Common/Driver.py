@@ -215,14 +215,6 @@ class Driver:
         '''
         self.driver.execute_script(js)
 
-    # -------------------------窗口截图-------------------------
-    def screenshot(self, file):
-        try:
-            self.driver.save_screenshot(file)
-            log.debug('窗口截图成功，存放路径是：{}'.format(file))
-        except Exception as error:
-            log.error('截图出现异常，错误提示：{}'.format(error))
-
     # -------------------------断言-------------------------
     def assert_text(self, name, value, exp):
         '''

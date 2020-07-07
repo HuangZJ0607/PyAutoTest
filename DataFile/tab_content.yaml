@@ -3,7 +3,7 @@
   name: xpath
   value: //*[@id="primaryChannelMenu"]/span[1]/div[2]/a/span
 -
-  title :  番剧 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
+  title :  番剧1 - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
   name: xpath
   value: //*[@id="primaryChannelMenu"]/span[2]/div[2]/a/span
 #-

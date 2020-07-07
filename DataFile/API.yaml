@@ -9,8 +9,9 @@
   validate: # 验证结果
     msg: success
     httpstatus: 200
+    name: admin
+    city: changsha
     age: 18
-    ciyt: changsha
 -
   case_name: demo2
   request:

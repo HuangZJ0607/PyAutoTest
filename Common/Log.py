@@ -1,22 +1,13 @@
-# -*- coding: utf-8 -*-
-# @Author   :hzj
-# @File     :Log.py
-# @Time     :2020/6/7 20:50
 '''
     封装logging日志模块的类
 '''
 import logging, os,time
 from Conf.Config import Config
-
 path = os.path.dirname(__file__)
 fpath = os.path.dirname(path)
-
 switch = Config().get('logging', 'switch')
 level = Config().get('logging', 'level').upper()
-
-
 class Log:
-
     def __init__(self):
         self.logger = logging.getLogger(__name__)
         # logger 配置等级
@@ -33,7 +24,6 @@ class Log:
                 self.filelogging()
             elif switch == '1':
                 pass
-
     def consolelogging(self):
         # 创建控制台处理器
         sh = logging.StreamHandler()
@@ -41,7 +31,6 @@ class Log:
         sh.setFormatter(self.formatter)
         # 把控制台处理器添加到日志器中
         self.logger.addHandler(sh)
-
     def filelogging(self):
         now = time.strftime('%Y_%m_%d_%H_%M_%S', time.localtime())
         file_path = fpath + '/Log/log_' + now + '.txt'
