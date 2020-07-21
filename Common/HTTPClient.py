@@ -35,10 +35,9 @@ class HTTPClient:
         }
         self.re_list = []
 
-    def send_request(self, method, url=None, name=None, data=None, headers=None, files=None):
+    def send_request(self, method, name=None, data=None, headers=None, files=None):
         '''封装发送请求的方法
         :param method: 请求的方式，分为get、post、delete等
-        :param url: 接口地址
         :param name: 接口地址的后缀
         :param data: 接口参数
         :param headers: 接口请求头
@@ -62,15 +61,14 @@ class HTTPClient:
             if isinstance(data, dict):
                 data = json.dumps(data)
 
-        if url == None:
             # 后缀不一定相同，但是前缀是一样的，拼接每次的请求的url
-            self.url = self.url + name
-        else:
-            self.url = url
+        self.url = self.url + name
+
         try:
             # python反射机制，这里相当于requests.method()，如requests.get()
             res = getattr(requests, method.lower())(url=self.url, headers=self.headers, data=data, files=files)
             log.info(f'>>>-----接口测试用例<{HTTPClient.index}>\n接口地址：{self.url}\n请求方法：{method}\n接口参数：{data}')
+            # 将接口返回值转换成python字典格式并打印日志
             log.info('接口响应值：{}\n'.format(res.json()))
             return res.json()
         except Exception as error:
@@ -121,8 +119,9 @@ class HTTPClient:
         else:
             return True
 
-# if __name__ == '__main__':
-#     HTTPClient().send_request(method='get', name='demo')
+
+if __name__ == '__main__':
+    HTTPClient().send_request(method='get', name='demo')
 #
 #     para = {
 #         "username": "admin",

@@ -18,7 +18,7 @@ fpath = os.path.dirname(os.path.abspath(path))
 
 
 class Email:
-    log.info('邮件发送准备中~')
+
     # ----------------从config.ini文件获取邮件相关参数----------------
     c = Config()
     # 发送人的邮箱地址
@@ -33,6 +33,7 @@ class Email:
     password = c.get('email', 'psw')
 
     def sendemail(self, filepath=None):
+        log.info('邮件发送准备中~')
         # --------------------------发件相关参数--------------------------
         # 实例化MIMEMultipart对象
         self.message = MIMEMultipart()
@@ -59,7 +60,6 @@ class Email:
         # 设置邮件文本内容
         email_text = f'''
 {now} {t}
-用例执行结果列表：{RESULT_LIST}
 用例总数为：{len(RESULT_LIST)}  通过率为：{(RESULT_LIST.count('True') / len(RESULT_LIST)) * 100}%  失败率为：{(RESULT_LIST.count('False') / len(RESULT_LIST)) * 100}%
         '''
         # 设置邮件格式

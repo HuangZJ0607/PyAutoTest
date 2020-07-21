@@ -1,14 +1,13 @@
 '''
     基于关键字驱动的，unittest + HTMLTestRunner + DDT的UI自动化测试用例demo
 '''
-import os, sys
-sys.path.append(os.getcwd())
 from Common.Driver import Driver
 from ddt import ddt, file_data
 from Common.Email import Email
 import unittest, time
 from HTMLTestRunner import HTMLTestRunner
-path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
 @ddt
 class Test_biTab(unittest.TestCase):
     @classmethod
@@ -22,7 +21,7 @@ class Test_biTab(unittest.TestCase):
     def setUp(self) -> None:
         self.driver.visit('http://www.bilibili.com')
 
-    @file_data(path + '/DataFile/tab_content.yaml')
+    @file_data('../DataFile/tab_content.yaml')
     def test_tab(self, **c):
         title = c.get('title')
         name = c.get('name')

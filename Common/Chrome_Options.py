@@ -20,7 +20,7 @@ class Options:
         prefs["profile.password_manager_enabled"] = False
         options.add_experimental_option("prefs", prefs)
         # 无头模式： 启动浏览器进程，但是不会显示出来
-        # options.add_argument('--headless')
+        options.add_argument('--headless')
         # 启动隐身模式
         # options.add_argument('incognito')
         return options
