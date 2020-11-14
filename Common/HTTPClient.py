@@ -7,7 +7,6 @@ from Conf.Config import Config
 from Common.Mysql import connect_mysql
 import json
 from Common.Yaml_Operation import read_yaml_extract
-from Common.ExecuteResult import RESULT_LIST
 
 log = Log().logger
 
@@ -67,12 +66,15 @@ class HTTPClient:
         try:
             # python反射机制，这里相当于requests.method()，如requests.get()
             res = getattr(requests, method.lower())(url=self.url, headers=self.headers, data=data, files=files)
-            log.info(f'>>>-----接口测试用例<{HTTPClient.index}>\n接口地址：{self.url}\n请求方法：{method}\n接口参数：{data}')
+            log.info(f'>>>-----接口测试用例<{HTTPClient.index}>')
+            log.info(f'接口地址：{self.url}')
+            log.info(f'请求方法：{method}')
+            log.info(f'接口参数：{data}')
             # 将接口返回值转换成python字典格式并打印日志
-            log.info('接口响应值：{}\n'.format(res.json()))
+            log.info('接口响应值：{}'.format(res.json()))
             return res.json()
         except Exception as error:
-            log.error('接口请求异常：{}\n'.format(error))
+            log.error('接口请求异常：{}'.format(error))
         finally:
             self.init_url_headers()
 
@@ -97,9 +99,10 @@ class HTTPClient:
                 # 预期结果与实际结果进行比较
                 try:
                     assert value == actual[key]
+                    log.debug(f'接口实际结果与预期结果比对一致-->实际结果为[{key}:{actual[key]}]预期结果为[{key}:{value}]')
                     self.re_list.append('True')
                 except AssertionError:
-                    log.info(f'接口返回值与预期不相等-->[验证结果中的key是：{key}][预期结果是：{value}][实际结果是：{actual[key]}]')
+                    log.error(f'接口的实际结果与预期结果不一致-->实际结果为[{key}:{actual[key]}]预期结果为[{key}:{value}]')
                     self.re_list.append('False')
             else:
                 for _key, _value in actual.items():

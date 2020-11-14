@@ -8,18 +8,7 @@
   extract: {"token":token} # 获取接口返回值中的变量
   validate: # 验证结果
     msg: success
-    httpstatus: 200
+    httpstatus: 300
     name: admin
     city: changsha
     age: 18
--
-  case_name: demo2
-  request:
-    interface_name: demo # 接口后缀
-    method: get # 接口请求方法
-    parmars: # 接口参数
-    headers: {"token":"${{token}}"} # 接口的请求头，这里代表token需要从文件中获取（参数化）
-  validate: # 验证结果
-    from: cemaxueyuan
-    name: hello,yideng
-    httpstatus: select * from `test`.test

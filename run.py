@@ -21,3 +21,4 @@ if __name__ == '__main__':
     Email().sendemail()
     os.system('allure generate --clean ./Report/xml/ -o ./Report/html')
     os.system('start chrome.exe H:/PyAutoTest/Report/html/index.html')
+

@@ -40,4 +40,3 @@ if __name__ == '__main__':
     # pytest.main(['-s', 'testcase_shop.py', '--alluredir', '../Report/xml'])
     # os.system('allure generate --clean ../Report/xml/ -o ../Report/html')
     pytest.main(['-s', 'testcase_shop.py'])
-    log.info(RESULT_LIST)
