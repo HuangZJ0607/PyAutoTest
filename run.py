@@ -16,9 +16,10 @@ allure generate --clean ./Report/xml/ -o ./Report/html
 '''
 
 if __name__ == '__main__':
-    args = ['-s', '--alluredir', './Report/xml']
-    pytest.main(args)
+    # args = ['-s', '--alluredir', './Report/xml']
+    # pytest.main(args)
     # Email().sendemail()
     # os.system('allure generate --clean ./Report/xml/ -o ./Report/html')
     # os.system('start chrome.exe H:/PyAutoTest/Report/html/index.html')
+    pytest.main(['-s', 'TestCases/testcase_API_demo.py'])
 

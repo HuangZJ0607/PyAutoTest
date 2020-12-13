@@ -9,7 +9,7 @@ import yaml, os
 
 path = os.path.dirname(os.path.abspath(__file__))
 fpath = os.path.dirname(path)
-yaml_path = fpath + './DataFile/extract.yaml'
+yaml_path = fpath + '/DataFile/extract.yaml'
 
 
 def write_yaml(extract_dict):
