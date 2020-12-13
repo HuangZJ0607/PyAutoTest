@@ -26,15 +26,12 @@ class Test_API:
                 extract = {}
                 extract[key] = res[value]
                 write_yaml(extract)
-        # status = self.r.vaildate(data['validate'], res)
         status = self.r.vaildate(data['validate'], res)
         try:
             assert status == True
             RESULT_LIST.append('True')
-            print(RESULT_LIST)
         except:
             RESULT_LIST.append('False')
-            print(RESULT_LIST)
         assert status == True
 
 
