@@ -8,7 +8,7 @@
   extract: {"token":token} # 获取接口返回值中的变量
   validate: # 验证结果
     msg: success
-    httpstatus: 300
+    httpstatus: 200
     name: admin
     city: changsha
     age: 18
