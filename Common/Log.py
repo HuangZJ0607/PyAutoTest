@@ -21,7 +21,16 @@ class Log:
             self.consolelogging()
             # 判断是否打印日志到日志文件
             if Config().get('logging', 'switch') == '0':
-                self.filelogging()
+                today = time.strftime('%Y%m%d', time.localtime())
+                if Config().get('env', 'env') == 'test':
+                    # 测试环境则按照服务器路径输出日志文件
+                    file_path1 = 'log_' + today + '.txt'
+                    file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '../../../Log/', file_path1)
+                    self.filelogging(file_path)
+                else:
+                    # 调试环境，即本地工程，则按照本地路径输出日志文件
+                    file_path = os.path.dirname(os.path.dirname(__file__)) + '/Log/log_' + today + '.txt'
+                    self.filelogging(file_path)
 
     def consolelogging(self):
         # 创建控制台处理器
@@ -31,13 +40,9 @@ class Log:
         # 把控制台处理器添加到日志器中
         self.logger.addHandler(sh)
 
-    def filelogging(self):
-        today = time.strftime('%Y%m%d', time.localtime())
-        # file_path = os.path.dirname(os.path.dirname(__file__)) + '/Log/log_' + today + '.txt'
-        file_path1 = 'log_' + today + '.txt'
-        file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),'../../../Log/',file_path1)
+    def filelogging(self, filepath):
         # 创建文件处理器
-        fh = logging.FileHandler(file_path)
+        fh = logging.FileHandler(filepath)
         # 文件处理器指定格式
         fh.setFormatter(self.formatter)
         # 添加文件处理器到日志器
