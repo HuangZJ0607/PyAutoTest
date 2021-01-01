@@ -34,8 +34,8 @@ class Log:
     def filelogging(self):
         today = time.strftime('%Y%m%d', time.localtime())
         # file_path = os.path.dirname(os.path.dirname(__file__)) + '/Log/log_' + today + '.txt'
-        # file_path = os.path.join('~', 'Log',f'log_{today}.txt')
-        file_path = '~/Log/'+'log_' + today + '.txt'
+        file_path1 = os.path.dirname(os.path.dirname(__file__)) + '/Log/log_' + today + '.txt'
+        file_path = os.path.join(file_path1,'../../../../../Log/')
         # 创建文件处理器
         fh = logging.FileHandler(file_path)
         # 文件处理器指定格式
