@@ -35,7 +35,7 @@ class Log:
         today = time.strftime('%Y%m%d', time.localtime())
         # file_path = os.path.dirname(os.path.dirname(__file__)) + '/Log/log_' + today + '.txt'
         file_path1 = os.path.dirname(os.path.dirname(__file__)) + '/Log/log_' + today + '.txt'
-        file_path = os.path.join(file_path1,'../../../../../Log/')
+        file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),'../../../Log/')
         # 创建文件处理器
         fh = logging.FileHandler(file_path)
         # 文件处理器指定格式
