@@ -22,6 +22,7 @@ class Log:
             # 判断是否打印日志到日志文件
             if Config().get('logging', 'switch') == '0':
                 today = time.strftime('%Y%m%d', time.localtime())
+                # 按照环境则输出日志文件，test则为服务器，debug为本地
                 if Config().get('env', 'env') == 'test':
                     # 测试环境则按照服务器路径输出日志文件
                     file_path1 = 'log_' + today + '.txt'
